@@ -1,0 +1,1194 @@
+/* Product Detail Page Styles */
+
+/* Page Layout */
+.product-detail-page {
+    background: #f8f9fa;
+    min-height: 100vh;
+}
+
+/* 当移动菜单打开时禁止滚动 */
+body.no-scroll {
+    overflow: hidden;
+    position: fixed;
+    width: 100%;
+}
+
+/* Breadcrumb Navigation */
+.breadcrumb-nav {
+    background: white;
+    padding: 25px 60px;
+    border-bottom: 1px solid #e9ecef;
+    margin-top: 35px;
+}
+
+.breadcrumb-list {
+    display: flex;
+    align-items: center;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    font-size: 14px;
+}
+
+.breadcrumb-list li {
+    display: flex;
+    align-items: center;
+}
+
+.breadcrumb-list li:not(:last-child)::after {
+    content: '/';
+    margin: 0 10px;
+    color: #999;
+}
+
+.breadcrumb-list a {
+    color: #666;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.breadcrumb-list a:hover {
+    color: #365333;
+}
+
+.breadcrumb-list .active {
+    color: #2d5a27;
+    font-weight: 500;
+}
+
+/* Main Product Section */
+.product-main {
+    padding: 70px 120px;
+}
+/*桌面默认左右各占一半宽度。grid-template-columns: 1fr 1fr;*/
+.product-detail-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: -20px;
+    align-items: start;
+}
+
+/* Product Images - Left Side */
+.product-images {
+    position: relative;
+    
+}
+/*每张图之间有 20px 间距*/
+.image-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.main-image-container {
+    position: relative;
+    aspect-ratio: 4/5;
+    border-radius: 4px;
+    overflow: hidden;
+    background: #f8f9fa;
+    cursor: zoom-in;
+    transition: transform 0.3s ease;
+}
+
+
+
+.main-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+.image-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.main-image-container:hover .image-overlay {
+    opacity: 1;
+}
+
+.zoom-btn {
+    background: rgba(255, 255, 255, 0.9);
+    border: none;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    color: #2d5a27;
+    font-size: 18px;
+}
+
+.zoom-btn:hover {
+    background: white;
+    transform: scale(1.1);
+}
+/*.badge 是单个徽章的样式。你可以通过 .badge.sale、.badge.guarantee 等再给它们不同的背景色。*/
+.image-badges {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.badge {
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.badge.sale {
+    background: #2d5a27;
+    color: white;
+}
+
+.badge.guarantee {
+    background: #ffd700;
+    color: #2d5a27;
+}
+
+/* Sub Images - 主照片下方的两张独立子照片 */
+.sub-images-container {
+    display: flex;
+    gap: 6px;
+    margin-top: 2px;
+    justify-content: center;
+}
+
+.sub-image-item {
+    width: calc(50% - 3px);
+    height: 700px;
+    border-radius: 4px;
+    overflow: hidden;
+    border: 1px solid #e9ecef;
+    transition: all 0.3s ease;
+    background: #f8f9fa;
+    position: relative;
+    flex: 1;
+}
+
+/* 当只有两张照片时，确保它们大小相同 */
+.sub-images-container:has(.sub-image-item:only-child) .sub-image-item {
+    width: 100%;
+}
+
+.sub-images-container:has(.sub-image-item:nth-child(2):last-child) .sub-image-item {
+    width: calc(50% - 3px);
+    flex: 1;
+}
+
+.sub-image-item:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
+}
+
+.sub-image-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+    .sub-images-container {
+        gap: 15px;
+        margin-top: 20px;
+    }
+    
+    .sub-image-item {
+        height: 250px;
+        flex: 1;
+    }
+    
+    /* 移动端：当只有两张照片时，确保它们大小相同 */
+    .sub-images-container:has(.sub-image-item:only-child) .sub-image-item {
+        width: 100%;
+    }
+    
+    .sub-images-container:has(.sub-image-item:nth-child(2):last-child) .sub-image-item {
+        width: calc(50% - 7.5px);
+        flex: 1;
+    }
+}
+
+@media (max-width: 480px) {
+    .sub-images-container {
+        gap: 12px;
+        margin-top: 15px;
+    }
+    
+    .sub-image-item {
+        height: 200px;
+        flex: 1;
+    }
+    
+    /* 小屏幕：当只有两张照片时，确保它们大小相同 */
+    .sub-images-container:has(.sub-image-item:only-child) .sub-image-item {
+        width: 100%;
+    }
+    
+    .sub-images-container:has(.sub-image-item:nth-child(2):last-child) .sub-image-item {
+        width: calc(50% - 6px);
+        flex: 1;
+    }
+}
+
+/* Thumbnail Stack - 横向滑动相册 */
+.thumbnail-stack {
+    display: flex;
+    flex-direction: row;
+    overflow-x: auto;
+    overflow-y: hidden;
+    gap: 12px;
+    padding: 10px 0 15px 0;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+    /* 隐藏滚动条但保持功能 */
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE and Edge */
+}
+
+/* 隐藏Webkit浏览器的滚动条 */
+.thumbnail-stack::-webkit-scrollbar {
+    display: none;
+}
+
+.thumbnail-item {
+    width: 80px;
+    height: 80px;
+    min-width: 80px;
+    flex-shrink: 0;
+    border-radius: 8px;
+    overflow: hidden;
+    cursor: pointer;
+    border: 2px solid transparent;
+    transition: all 0.3s ease;
+    background: #f8f9fa;
+    position: relative;
+}
+
+
+
+.thumbnail-item:hover {
+    border-color: #2d5a27;
+    transform: scale(1.05);
+}
+
+.thumbnail-item.active {
+    border-color: #2d5a27;
+    box-shadow: 0 0 0 2px rgba(45, 90, 39, 0.2);
+}
+
+.thumbnail-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+/* Product Information - Right Side (Sticky) */
+.product-info {
+    position: sticky;
+    top: 50px;
+    height: fit-content;
+}
+
+.details-container {
+    background: white;
+    padding: 30px;
+    border-radius: 0px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    border: 1px solid #e9ecef;
+}
+/*产品标题和副标题之间有 35px 间距*/
+.product-header {
+    margin-bottom: 35px;
+}
+
+.product-title {
+    font-size: 38px;
+    font-weight: 700;
+    color: #567040;
+    margin-bottom: 10px;
+    line-height: 1.2;
+}
+
+.product-subtitle {
+    font-size: 16px;
+    color: #666;
+    line-height: 1.5;
+}
+
+/* Price Section */
+.price-section {
+    margin-bottom: 30px;
+    padding: 20px;
+    background: #f8f9fa;
+    border-radius: 8px;
+    border: 1px solid #e9ecef;
+}
+
+.price-container {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 8px;
+}
+
+.current-price {
+    font-size: 23px;
+    font-weight: 700;
+    color: #567040;
+}
+
+.original-price {
+    font-size: 16px;
+    color: #999;
+    text-decoration: line-through;
+}
+
+.price-savings {
+    color: #7d813b;
+    font-weight: 600;
+    font-size: 14px;
+}
+
+/* Size Selection */
+.size-selection {
+    margin-bottom: 25px;
+}
+
+.size-selection h3 {
+    font-size: 16px;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 12px;
+}
+
+.size-options {
+    display: flex;
+    gap: 10px;
+}
+
+.size-option {
+    padding: 12px 20px;
+    border: 2px solid #e9ecef;
+    background: white;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 500;
+    color: #666;
+}
+
+.size-option:hover {
+    border-color: #2d5a27;
+    color: #2d5a27;
+}
+
+.size-option.active {
+    border-color: #2d5a27;
+    background: #567040;
+    color: white;
+}
+
+/* Quantity Selection */
+.quantity-selection {
+    margin-bottom: 25px;
+}
+
+.quantity-selection h3 {
+    font-size: 16px;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 12px;
+}
+
+.quantity-controls {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    border: 2px solid #e9ecef;
+    border-radius: 8px;
+    overflow: hidden;
+    width: fit-content;
+}
+
+.quantity-btn {
+    background: #f8f9fa;
+    border: none;
+    padding: 12px 16px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    color: #666;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.quantity-btn:hover {
+    background: #e9ecef;
+    color: #2d5a27;
+}
+
+.quantity-input {
+    border: none;
+    padding: 12px 16px;
+    text-align: center;
+    font-size: 16px;
+    font-weight: 600;
+    width: 60px;
+    background: white;
+    color: #333;
+}
+
+.quantity-input:focus {
+    outline: none;
+}
+/* 隐藏 Chrome, Safari, Edge 的上下箭头 */
+.quantity-input::-webkit-inner-spin-button,
+.quantity-input::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* 隐藏 Firefox 的上下箭头 */
+.quantity-input[type=number] {
+    -moz-appearance: textfield;
+}
+
+
+/* Gift Options */
+.gift-options {
+    margin-bottom: 30px;
+    padding: 20px;
+    background: #f8f9fa;
+    border-radius: 8px;
+    border: 1px solid #e9ecef;
+}
+
+.gift-toggle {
+    margin-bottom: 15px;
+}
+
+.gift-checkbox {
+    display: none;
+}
+
+.gift-label {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    font-weight: 500;
+    color: #333;
+}
+
+.checkbox-custom {
+    width: 20px;
+    height: 20px;
+    border: 2px solid #e9ecef;
+    border-radius: 4px;
+    margin-right: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+.gift-checkbox:checked + .gift-label .checkbox-custom {
+    background: #2d5a27;
+    border-color: #2d5a27;
+}
+
+.gift-checkbox:checked + .gift-label .checkbox-custom::after {
+    content: '✓';
+    color: white;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.gift-message {
+    display: none;
+    margin-top: 15px;
+}
+
+.gift-checkbox:checked ~ .gift-message {
+    display: block;
+}
+
+.gift-message textarea {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid #e9ecef;
+    border-radius: 8px;
+    resize: vertical;
+    min-height: 80px;
+    font-family: inherit;
+    font-size: 14px;
+}
+
+.gift-message textarea:focus {
+    outline: none;
+    border-color: #2d5a27;
+}
+
+.char-count {
+    text-align: right;
+    font-size: 12px;
+    color: #666;
+    margin-top: 5px;
+}
+
+/* Add to Cart Section */
+.add-to-cart-section {
+    margin-bottom: 30px;
+}
+
+.add-to-cart-btn {
+    width: 100%;
+    background: #567040;
+    color: white;
+    border: none;
+    padding: 16px 24px;
+    border-radius: 8px;
+    font-size: 18px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.add-to-cart-btn:hover {
+    background: #1e3d1a;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(45, 90, 39, 0.3);
+}
+
+.cart-actions {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+}
+
+.wishlist-btn,
+.share-btn {
+    background: #f8f9fa;
+    border: 2px solid #e9ecef;
+    color: #666;
+    padding: 12px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 50px;
+}
+
+.wishlist-btn:hover,
+.share-btn:hover {
+    border-color: #2d5a27;
+    color: #2d5a27;
+    background: white;
+}
+
+.wishlist-btn.active {
+    background: #ff6b6b;
+    border-color: #ff6b6b;
+    color: white;
+}
+
+/* Product Features */
+.product-features {
+    border-top: 1px solid #e9ecef;
+    padding-top: 20px;
+}
+
+.feature {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 12px;
+    color: #666;
+    font-size: 14px;
+}
+
+.feature i {
+    color: #567040;
+    width: 16px;
+}
+
+/* Product Tabs Section */
+.product-tabs-section {
+    background: white;
+    padding: 40px 0;
+    border-top: 1px solid #e9ecef;
+}
+
+.product-tabs {
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+.tab-navigation {
+    display: flex;
+    border-bottom: 2px solid #e9ecef;
+    margin-bottom: 30px;
+}
+
+.tab-btn {
+    background: none;
+    border: none;
+    padding: 15px 25px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 500;
+    color: #666;
+    border-bottom: 3px solid transparent;
+    transition: all 0.3s ease;
+}
+
+.tab-btn:hover {
+    color: #2d5a27;
+}
+
+.tab-btn.active {
+    color: #2d5a27;
+    border-bottom-color: #2d5a27;
+}
+
+.tab-panel {
+    display: none;
+}
+
+.tab-panel.active {
+    display: block;
+}
+
+.tab-panel h3 {
+    font-size: 24px;
+    font-weight: 600;
+    color: #5f5927;
+    margin-bottom: 20px;
+}
+
+/* Care Grid */
+.care-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.care-item {
+    padding: 20px;
+    background: #f8f9fa;
+    border-radius: 8px;
+    border: 1px solid #e9ecef;
+}
+
+.care-item h4 {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #567040;
+    margin-bottom: 10px;
+    font-size: 16px;
+}
+
+.care-item h4 i {
+    color: #567040;
+}
+
+.care-item p {
+    color: #666;
+    line-height: 1.5;
+}
+
+/* Shipping Info */
+.shipping-info {
+    display: grid;
+    gap: 20px;
+}
+
+.shipping-option {
+    padding: 20px;
+    background: #f8f9fa;
+    border-radius: 8px;
+    border: 1px solid #e9ecef;
+}
+
+.shipping-option h4 {
+    color: #567040;
+    margin-bottom: 8px;
+    font-size: 16px;
+}
+
+.shipping-option p {
+    color: #666;
+    margin-bottom: 4px;
+}
+
+/* Reviews */
+.reviews-summary {
+    padding: 20px;
+    background: #f8f9fa;
+    border-radius: 8px;
+    border: 1px solid #e9ecef;
+}
+
+.rating {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.stars {
+    display: flex;
+    gap: 2px;
+}
+
+.stars i {
+    color: #ffd700;
+    font-size: 18px;
+}
+
+/* Image Zoom Modal */
+.image-zoom-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.9);
+    z-index: 10000;
+    display: none;
+    align-items: center;
+    justify-content: center;
+}
+
+.image-zoom-modal.active {
+    display: flex;
+}
+
+.zoom-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.zoom-container {
+    position: relative;
+    max-width: 90%;
+    max-height: 90%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.zoom-image {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    border-radius: 8px;
+}
+
+.zoom-close,
+.zoom-prev,
+.zoom-next {
+    position: absolute;
+    background: rgba(255, 255, 255, 0.9);
+    border: none;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    color: #333;
+    font-size: 18px;
+}
+
+.zoom-close {
+    top: -60px;
+    right: 0;
+}
+
+.zoom-prev {
+    left: -60px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.zoom-next {
+    right: -60px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.zoom-close:hover,
+.zoom-prev:hover,
+.zoom-next:hover {
+    background: white;
+    color: #2d5a27;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .product-detail-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+    
+    .product-images {
+        position: static;
+        order: 1;
+    }
+    
+    .product-info {
+        position: static;
+        order: 2;
+    }
+ /* 默认：竖排（桌面版） */
+.thumbnail-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+    
+    .container {
+        padding: 0 20px;
+    }
+    
+    .product-title {
+        font-size: 28px;
+    }
+    
+    .current-price {
+        font-size: 32px;
+    }
+}
+
+@media (max-width: 768px) {
+    .breadcrumb-nav {
+        margin-top: 70px;
+    }
+    
+    .product-main {
+        padding: 20px 0;
+    }
+    
+    .details-container {
+        padding: 20px;
+    }
+    
+    .product-title {
+        font-size: 24px;
+    }
+    
+    .current-price {
+        font-size: 28px;
+    }
+    
+    .size-options {
+        flex-wrap: wrap;
+    }
+    
+    .tab-navigation {
+        flex-wrap: wrap;
+    }
+    
+    .tab-btn {
+        padding: 12px 20px;
+        font-size: 14px;
+    }
+    
+    .care-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    /* 移除重复的thumbnail-stack样式，使用全局样式 */
+    
+    .zoom-close {
+        top: 10px;
+        right: 10px;
+    }
+    
+    .zoom-prev,
+    .zoom-next {
+        display: none;
+    
+    .thumbnail-stack {
+            display: flex;
+            flex-direction: row;  /* 横向 */
+            overflow-x: auto;     /* 可横向滚动 */
+            gap: 12px;
+            padding-bottom: 10px;
+            -webkit-overflow-scrolling: touch;
+          }
+        
+    .thumbnail-item {
+            flex: 0 0 auto; /* 防止被压缩 */
+            width: 80px;
+            height: 80px;
+    }
+}
+
+@media (max-width: 480px) {
+    /* 防止页面左右移动 */
+    body {
+        overflow-x: hidden;
+        width: 100%;
+    }
+    
+    .container {
+        padding: 0 15px;
+        max-width: 100%;
+        width: 100%;
+        box-sizing: border-box;
+    }
+    
+    /* 面包屑导航 */
+    .breadcrumb-nav {
+        padding: 15px 15px;
+        margin-top: 60px;
+    }
+    
+    .breadcrumb-list {
+        font-size: 12px;
+        flex-wrap: wrap;
+    }
+    
+    /* 主产品区域 */
+    .product-main {
+        padding: 20px 3px;
+    }
+    
+    .product-detail-grid {
+        gap: 10px;
+    }
+    
+    /* 产品标题 */
+    .product-title {
+        font-size: 24px;
+        line-height: 1.2;
+        margin-bottom: 8px;
+    }
+    
+    .product-subtitle {
+        font-size: 14px;
+    }
+    
+    /* 价格区域 */
+    .price-section {
+        padding: 15px;
+        margin-bottom: 20px;
+    }
+    
+    .current-price {
+        font-size: 28px;
+    }
+    
+    .original-price {
+        font-size: 16px;
+    }
+    
+    .price-savings {
+        font-size: 12px;
+    }
+    
+    /* 尺寸选择 */
+    .size-options {
+        flex-wrap: wrap;
+        gap: 8px;
+    }
+    
+    .size-option {
+        padding: 10px 16px;
+        font-size: 14px;
+        flex: 1;
+        min-width: 80px;
+        text-align: center;
+    }
+    
+    /* 数量控制 */
+    .quantity-controls {
+        width: 100%;
+        max-width: 200px;
+    }
+    
+    .quantity-btn {
+        padding: 10px 12px;
+    }
+    
+    .quantity-input {
+        width: 50px;
+        padding: 10px 12px;
+        font-size: 14px;
+    }
+    
+    /* 礼品选项 */
+    .gift-options {
+        padding: 15px;
+        margin-bottom: 20px;
+    }
+    
+    .gift-message textarea {
+        font-size: 14px;
+        min-height: 60px;
+    }
+    
+    /* 添加到购物车按钮 */
+    .add-to-cart-btn {
+        font-size: 16px;
+        padding: 14px 20px;
+        width: 100%;
+    }
+    
+    .cart-actions {
+        gap: 8px;
+    }
+    
+    .wishlist-btn,
+    .share-btn {
+        width: 45px;
+        height: 45px;
+        padding: 10px;
+    }
+    
+    /* 产品特性 */
+    .feature {
+        font-size: 13px;
+        margin-bottom: 10px;
+    }
+    
+    .feature i {
+        width: 14px;
+    }
+    
+    /* 详情容器 */
+    .details-container {
+        padding: 20px 15px;
+        margin: 0;
+    }
+    
+    /* 标签页 */
+    .product-tabs-section {
+        padding: 30px 15px;
+    }
+    
+    .tab-navigation {
+        flex-wrap: wrap;
+        gap: 5px;
+    }
+    
+    .tab-btn {
+        padding: 10px 15px;
+        font-size: 13px;
+        flex: 1;
+        min-width: 80px;
+        text-align: center;
+    }
+    
+    .tab-panel h3 {
+        font-size: 20px;
+        margin-bottom: 15px;
+    }
+    
+    /* 护理网格 */
+    .care-item {
+        padding: 15px;
+    }
+    
+    .care-item h4 {
+        font-size: 14px;
+        margin-bottom: 8px;
+    }
+    
+    .care-item p {
+        font-size: 13px;
+    }
+    
+    /* 配送信息 */
+    .shipping-option {
+        padding: 15px;
+    }
+    
+    .shipping-option h4 {
+        font-size: 14px;
+    }
+    
+    .shipping-option p {
+        font-size: 13px;
+    }
+    
+    /* 评价 */
+    .reviews-summary {
+        padding: 15px;
+    }
+    
+    .rating {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+    
+    .stars i {
+        font-size: 16px;
+    }
+    
+    /* 移除重复的thumbnail-stack样式，使用全局样式 */
+    
+    /* 图片缩放模态框 */
+    .zoom-close {
+        top: 5px;
+        right: 5px;
+        width: 40px;
+        height: 40px;
+        font-size: 16px;
+    }
+    
+    .zoom-container {
+        max-width: 95%;
+        max-height: 95%;
+    }
+    
+    /* 确保没有水平滚动 */
+    * {
+        box-sizing: border-box;
+    }
+    
+    img {
+        max-width: 100%;
+        height: auto;
+    }
+}
+}

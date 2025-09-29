@@ -1,0 +1,742 @@
+/* Plant Gifts Page - Advanced Design Elements */
+
+/* Page Hero Section */
+.page-hero {
+    position: relative;
+    background: linear-gradient(135deg, #e0e9df 0%, #4a7c59 100%);
+    color: #8eb66b;
+    padding: 120px 0 80px;
+    overflow: hidden;
+    min-height: 700px;
+    display: flex;
+    align-items: center;
+}
+
+.page-hero .hero-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('https://www.secretgardens.com.au/wp-content/uploads/2022/11/SecretGardens-ParkVilla-SG-24-MPRD-17-11-2021_0395.jpg');
+    background-size: cover;
+    background-position: center;
+    opacity: 1;
+    z-index: 1;
+}
+
+.page-hero .container {
+    position: relative;
+    z-index: 2;
+}
+
+.page-hero .hero-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+}
+
+.page-hero .hero-text h1 {
+    font-size: 4rem;
+    font-weight: 600;
+    margin-bottom: 20px;
+    line-height: 1.2;
+    font-family: 'Inter', 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+}
+
+.page-hero .hero-subtitle {
+    font-size: 1.5rem;
+    margin-bottom: 40px;
+    opacity: 0.9;
+    font-weight: 300;
+}
+
+.page-hero .hero-stats {
+    display: flex;
+    gap: 40px;
+    flex-wrap: wrap;
+}
+
+.page-hero .stat-item {
+    text-align: center;
+}
+
+.page-hero .stat-number {
+    display: block;
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #ffd700;
+    margin-bottom: 8px;
+}
+
+.page-hero .stat-label {
+    font-size: 0.9rem;
+    opacity: 0.8;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.page-hero .hero-visual {
+    position: relative;
+    height: 400px;
+}
+/*这个是小卡片的*/
+.page-hero .floating-card {
+    position: absolute;
+    width: 260px;
+    height: 320px;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 25px 50px rgba(0,0,0,0.3);
+    animation: float 6s ease-in-out infinite;
+    background-image: url('https://www.bloomspace.co/cdn/shop/files/PG014AnjamaniPink_87c91057-86ed-47c0-8348-12848d4b1b91_1100x.jpg?v=1749271640');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.page-hero .floating-card img {
+    display: none; /* 隐藏img标签，显示背景图片 */
+}
+
+.page-hero .card-badge {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: rgba(255, 215, 0, 0.9);
+    color: #2d5a27;
+    padding: 8px 16px;
+    border-radius: 15px;
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/*这个动画让元素 上下浮动*/
+@keyframes float {
+    0%, 100% { transform: translateY(0px) rotate(0deg); }
+    50% { transform: translateY(-20px) rotate(2deg); }
+    
+}
+
+
+/* Products Section */
+.products-section {
+    padding: 50px 40px;
+    background: #f8f9fa;
+}
+
+.products-section:nth-child(even) {
+    background: white;
+}
+
+/* 这个是Gift she loves的section-header*/
+.products-section .section-header {
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.products-section .section-header h2 {
+    font-size: 3rem;
+    font-weight: 700;
+    color: #2d5a27;
+    margin-bottom: 20px;
+    font-family: 'Inter', 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+.products-section .section-description {
+    font-size: 1.2rem;
+    color: #6c757d;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* Premium Product Grid */
+.products-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    margin: 0 60px;
+}
+/*这个是Gift she loves的product-grid， 要改多几个在这边*/
+.products-grid.two-rows {
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: auto;
+    gap: 10px;
+}
+
+@media (max-width: 1200px) {
+    .products-grid.two-rows {
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-rows: auto;
+    }
+}
+
+@media (max-width: 900px) {
+    .products-grid.two-rows {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 600px) {
+    /* 减少容器的左右留白 */
+    .container {
+        padding-left: 10px !important;
+        padding-right: 10px !important;
+    }
+    
+    /* 减少页面hero的左右留白 */
+    .page-hero .container {
+        padding-left: 10px !important;
+        padding-right: 10px !important;
+    }
+    
+    /* 减少gift guide的左右留白 */
+    .gift-guide .container {
+        padding-left: 10px !important;
+        padding-right: 10px !important;
+    }
+    
+    /* 减少newsletter的左右留白 */
+    .newsletter-section .container {
+        padding-left: 10px !important;
+        padding-right: 10px !important;
+    }
+    
+    .products-grid.two-rows {
+        grid-template-columns: repeat(2, 1fr);
+        margin: 0 5px;
+        gap: 10px;
+        align-items: stretch;
+    }
+    
+    .product-card {
+        min-height: 350px;
+        height: 350px;
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+    }
+    
+    .product-card .product-image {
+        height: 180px;
+        flex-shrink: 0;
+    }
+    
+    .product-card .product-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+    
+    .product-card .product-info {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        padding: 15px;
+    }
+    
+    .product-card h3 {
+        font-size: 1rem;
+        margin-bottom: 6px;
+        line-height: 1.3;
+    }
+    
+    .product-card .product-size {
+        font-size: 0.85rem;
+        margin-bottom: 8px;
+        color: #666;
+    }
+    
+    .product-card .product-price {
+        margin-bottom: 12px;
+    }
+    
+    .product-card .current-price {
+        font-size: 1.2rem;
+        font-weight: 700;
+        color: #2d5a27;
+    }
+    
+    .product-card .add-to-cart {
+        padding: 10px 16px;
+        font-size: 0.9rem;
+        margin-top: auto;
+        width: 100%;
+        text-align: center;
+    }
+    
+    .premium-card .product-info {
+        padding: 15px;
+    }
+}
+/*
+.premium-card {
+    background: white;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+}
+
+.premium-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 25px 50px rgba(0,0,0,0.15);
+}
+
+.premium-card .product-image {
+    position: relative;
+    height: 320px;
+    overflow: hidden;
+}
+
+.premium-card .product-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.premium-card:hover .product-image img {
+    transform: scale(1.1);
+}
+
+
+
+.premium-card .product-info {
+    padding: 25px;
+}
+
+.premium-card .product-info h3 {
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: #2d5a27;
+    margin-bottom: 8px;
+    font-family: 'Inter', 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+.premium-card .product-size {
+    font-size: 0.9rem;
+    color: #6c757d;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.premium-card .product-price {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 15px;
+}
+
+.premium-card .current-price {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #2d5a27;
+}
+
+.premium-card .original-price {
+    font-size: 1.1rem;
+    color: #adb5bd;
+    text-decoration: line-through;
+}
+
+.premium-card .product-meta {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.premium-card .stock-status {
+    font-size: 0.8rem;
+    padding: 4px 12px;
+    border-radius: 12px;
+    font-weight: 500;
+}
+
+.premium-card .stock-status.in-stock {
+    background: rgba(34, 197, 94, 0.1);
+    color: #16a34a;
+}
+
+.premium-card .delivery-info {
+    font-size: 0.8rem;
+    color: #6c757d;
+}
+
+.premium-card .premium-btn {
+    width: 100%;
+    background: linear-gradient(135deg, #2d5a27 0%, #4a7c59 100%);
+    color: white;
+    border: none;
+    padding: 15px 25px;
+    border-radius: 25px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    position: relative;
+    overflow: hidden;
+}
+
+.premium-card .premium-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+    transition: left 0.5s ease;
+}
+
+.premium-card .premium-btn:hover::before {
+    left: 100%;
+}
+
+.premium-card .premium-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(45, 90, 39, 0.3);
+}
+
+.premium-card .premium-btn .btn-icon {
+    transition: transform 0.3s ease;
+}
+
+.premium-card .premium-btn:hover .btn-icon {
+    transform: translateX(5px);
+}
+*/
+/* Gift Guide Section */
+.gift-guide {
+    padding: 100px 0;
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+}
+
+.gift-guide .guide-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 50px;
+    align-items: center;
+}
+
+.gift-guide .guide-text h2 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #2d5a27;
+    margin-bottom: 15px;
+    font-family: 'Inter', 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+.gift-guide .guide-text p {
+    font-size: 1.1rem;
+    color: #6c757d;
+    line-height: 1.7;
+    margin-bottom: 30px;
+}
+/*这个是Gift she loves的buttom browse growlight*/
+.gift-guide .guide-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    background: linear-gradient(135deg, #6c9267 0%, #4a7c59 100%);
+    color: white;
+    text-decoration: none;
+    padding: 15px 30px;
+    border-radius: 25px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    box-shadow: 0 8px 25px rgba(45, 90, 39, 0.3);
+}
+
+.gift-guide .guide-cta:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 35px rgba(45, 90, 39, 0.4);
+}
+/*这个是Ultimate Gift for Plant Lovers的照片*/
+.gift-guide .guide-visual img {
+    width: 100%;
+    height: 530px;
+    object-fit: cover;
+    border-radius: 20px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+}
+
+/* Newsletter Section */
+.newsletter-section {
+    padding: 80px 0;
+    background: linear-gradient(135deg, #234b03 0%, #4a7c59 100%);
+    color: white;
+    text-align: center;
+}
+
+.newsletter-section .newsletter-content h2 {
+    color: #ffd700;
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 0px;
+    font-family: 'Inter', 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+.newsletter-section .newsletter-content p {
+    font-size: 1.1rem;
+    margin-bottom: 20px;
+    opacity: 0.9;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+/*这个是shop e buttom*/
+.newsletter-section .newsletter-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+    text-decoration: none;
+    padding: 18px 35px;
+    border-radius: 30px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+}
+
+.newsletter-section .newsletter-cta:hover {
+    background: rgba(255, 255, 255, 0.3);
+    border-color: rgba(255, 255, 255, 0.5);
+    transform: translateY(-2px);
+}
+
+/* Footer */
+.footer {
+    background: #1a1a1a;
+    color: white;
+    padding: 80px 0 40px;
+}
+
+.footer-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 40px;
+    margin-bottom: 10px;
+}
+
+.footer-section h3,
+.footer-section h4 {
+    color: #ffd700;
+    margin-bottom: 10px;
+    font-family: 'Inter', 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+.footer-section p,
+.footer-section li {
+    color: #b0b0b0;
+    line-height: 1.6;
+}
+
+.footer-section ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-section ul li {
+    margin-bottom: 10px;
+}
+
+.footer-section ul li a {
+    color: #b0b0b0;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.footer-section ul li a:hover {
+    color: #ffd700;
+}
+
+.footer-bottom {
+    border-top: 1px solid #333;
+    padding-top: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.social-links {
+    display: flex;
+    gap: 20px;
+}
+
+.social-links a {
+    color: #b0b0b0;
+    font-size: 20px;
+    transition: color 0.3s ease;
+}
+
+.social-links a:hover {
+    color: #ada85e;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .page-hero .hero-content {
+        grid-template-columns: 1fr;
+        gap: 40px;
+        text-align: center;
+    }
+    
+    .page-hero .hero-text h1 {
+        font-size: 3rem;
+    }
+    
+    .products-grid {
+        margin: 0 30px;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 20px;
+    }
+    
+    .gift-guide .guide-content {
+        grid-template-columns: 1fr;
+        gap: 40px;
+        text-align: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .page-hero {
+        padding: 100px 0 60px;
+    }
+    
+    .page-hero .hero-text h1 {
+        font-size: 2.5rem;
+    }
+    
+    .page-hero .hero-subtitle {
+        font-size: 1.2rem;
+    }
+    
+    .page-hero .hero-stats {
+        gap: 20px;
+    }
+    
+    .page-hero .stat-number {
+        font-size: 2rem;
+    }
+    
+    .category-nav .category-tab {
+        padding: 15px 20px;
+        font-size: 12px;
+    }
+    
+    .products-section .section-header h2 {
+        font-size: 2rem;
+    }
+    
+    /* 进一步减少容器的左右留白 */
+    .container {
+        padding-left: 5px !important;
+        padding-right: 5px !important;
+    }
+    
+    /* 减少页面hero的左右留白 */
+    .page-hero .container {
+        padding-left: 5px !important;
+        padding-right: 5px !important;
+    }
+    
+    /* 减少gift guide的左右留白 */
+    .gift-guide .container {
+        padding-left: 5px !important;
+        padding-right: 5px !important;
+    }
+    
+    /* 减少newsletter的左右留白 */
+    .newsletter-section .container {
+        padding-left: 5px !important;
+        padding-right: 5px !important;
+    }
+    
+    .products-grid {
+        margin: 0 5px;
+        gap: 8px;
+        align-items: stretch;
+    }
+    
+    .product-card {
+        min-height: 380px;
+        height: 380px;
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+    }
+    
+    .product-card .product-image {
+        height: 200px;
+        flex-shrink: 0;
+    }
+    
+    .product-card .product-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+    
+    .product-card .product-info {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        padding: 15px;
+    }
+    
+    .product-card h3 {
+        font-size: 1.1rem;
+        margin-bottom: 6px;
+        line-height: 1.3;
+    }
+    
+    .product-card .product-size {
+        font-size: 0.9rem;
+        margin-bottom: 8px;
+        color: #666;
+    }
+    
+    .product-card .product-price {
+        margin-bottom: 12px;
+    }
+    
+    .product-card .current-price {
+        font-size: 1.3rem;
+        font-weight: 700;
+        color: #2d5a27;
+    }
+    
+    .product-card .add-to-cart {
+        padding: 10px 16px;
+        font-size: 0.9rem;
+        margin-top: auto;
+        width: 100%;
+        text-align: center;
+    }
+    
+    .premium-card .product-info {
+        padding: 15px;
+    }
+    
+    .footer-bottom {
+        flex-direction: column;
+        gap: 20px;
+        text-align: center;
+    }
+}

@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Planters & Pots - Bloomspace | Beautiful Plant Containers</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body class="planters-page">
+    <!-- Navigation will be loaded dynamically -->
+
+    <!-- Main Content -->
+    <main>
+        <!-- Hero Section -->
+        <section class="page-hero">
+            <div class="container">
+                <div class="hero-content-center">
+                    <h1>Planters & Pots</h1>
+                    <h2>Beautiful containers to showcase your plants in style</h2>
+                    <div class="hero-pills">
+                        <span class="pill">🏺 Ceramic Pots</span>
+                        <span class="pill">🌿 Drainage Holes</span>
+                        <span class="pill">🎨 Modern Designs</span>
+                        <span class="pill">📏 All Sizes</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Products Section -->
+        <section class="all-products-section">
+            <div class="container">
+                <div id="debugInfo" style="margin-bottom: 20px; padding: 10px; background: #f0f0f0; border-radius: 5px;"></div>
+                <div class="products-grid" id="plantersGrid">
+                    <!-- Products will be loaded dynamically -->
+                </div>
+                
+                <!-- Load More Button -->
+                <div class="load-more-container">
+                    <button class="btn-load-more" id="loadMoreBtn">
+                        <i class="fas fa-plus"></i>
+                        Load More Products
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section class="features">
+            <div class="container">
+                <h2>Perfect Planters for Every Plant</h2>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <i class="fas fa-droplet"></i>
+                        <h3>Proper Drainage</h3>
+                        <p>All our planters come with drainage holes to prevent root rot and ensure healthy plant growth.</p>
+                    </div>
+                    <div class="feature-card">
+                        <i class="fas fa-palette"></i>
+                        <h3>Stylish Designs</h3>
+                        <p>From minimalist ceramic to rustic terracotta, find the perfect style for your home decor.</p>
+                    </div>
+                    <div class="feature-card">
+                        <i class="fas fa-ruler"></i>
+                        <h3>Multiple Sizes</h3>
+                        <p>Small, medium, and large sizes available to accommodate plants of all growth stages.</p>
+                    </div>
+                    <div class="feature-card">
+                        <i class="fas fa-shield-alt"></i>
+                        <h3>Durable Materials</h3>
+                        <p>High-quality materials ensure your planters will last for years while maintaining their beauty.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Newsletter Section -->
+        <section class="newsletter">
+            <div class="container">
+                <h2>Stay in the Loop</h2>
+                <p>Get notified about new planter collections and exclusive offers</p>
+                <form class="newsletter-form">
+                    <input type="email" placeholder="Enter your email address" required>
+                    <button type="submit">Subscribe</button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer will be loaded dynamically -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Bloomspace</h3>
+                    <p>Your trusted partner in creating beautiful, green spaces that bring life and joy to every home.</p>
+                    <div class="social-links">
+                        <a href="#" aria-label="Follow us on Facebook"><i class="fab fa-facebook"></i></a>
+                        <a href="#" aria-label="Follow us on Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" aria-label="Follow us on Twitter"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="new-arrivals.html">New Arrivals</a></li>
+                        <li><a href="care-tools.html">Care Tools</a></li>
+                        <li><a href="#about">About Us</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Customer Service</h4>
+                    <ul>
+                        <li><a href="#shipping">Shipping Info</a></li>
+                        <li><a href="#returns">Returns</a></li>
+                        <li><a href="#faq">FAQ</a></li>
+                        <li><a href="#contact">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact Info</h4>
+                    <p><i class="fas fa-phone"></i> +60 12-345-6789</p>
+                    <p><i class="fas fa-envelope"></i> hello@bloomspace.my</p>
+                    <p><i class="fas fa-map-marker-alt"></i> Kuala Lumpur, Malaysia</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Bloomspace. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js?v=6.8"></script>
+    <script src="navigation-loader.js"></script>
+    <script src="footer-loader.js"></script>
+    <script>
+        // Initialize Planters page when DOM is loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('🔄 Planters page DOM loaded');
+            
+            // Wait for ProductCardGenerator to be available
+            const waitForProductCardGenerator = () => {
+                if (window.productCardGenerator) {
+                    console.log('✅ ProductCardGenerator is available');
+                    loadPlanterProducts();
+                } else {
+                    console.log('⏳ Waiting for ProductCardGenerator...');
+                    setTimeout(waitForProductCardGenerator, 100);
+                }
+            };
+            
+            waitForProductCardGenerator();
+        });
+        
+        async function loadPlanterProducts() {
+            console.log('🔄 Loading planter products from API...');
+            
+            try {
+                // Load all products from API
+                const response = await fetch('api/products/list.php?limit=100&sort=created_at&order=DESC');
+                const data = await response.json();
+                
+                if (data.success && data.data.products) {
+                    console.log(`✅ Loaded ${data.data.products.length} products from API`);
+                    
+                    // Filter for products in category ID 18 (Planters)
+                    const planterProducts = data.data.products.filter(product => {
+                        // Check if product belongs to category ID 18
+                        return product.category_ids && product.category_ids.includes(18);
+                    });
+                    
+                    console.log(`✅ Found ${planterProducts.length} products in category ID 18 (Planters)`);
+                    
+                    // If no planter products found, show a message
+                    if (planterProducts.length === 0) {
+                        console.log('⚠️ No products found in category ID 18 (Planters)');
+                        debugInfo.innerHTML = '<p>⚠️ No products found in category ID 18 (Planters). Showing all products as fallback.</p>';
+                        
+                        // Show all products as fallback
+                        const fallbackProducts = data.data.products.slice(0, 6).map(product => ({
+                            id: product.id,
+                            name: product.name,
+                            size: getSizeFromProduct(product),
+                            currentPrice: product.formatted_price.replace('RM ', ''),
+                            originalPrice: product.formatted_sale_price ? product.formatted_sale_price.replace('RM ', '') : null,
+                            badgeType: getBadgeType(product),
+                            badgeText: getBadgeText(product),
+                            image: getValidImageUrl(product.primary_image),
+                            hoverImage: getHoverImageUrl(product.primary_image, product.secondary_image),
+                            category: getCategoryFromProduct(product),
+                            description: product.description || product.short_description || 'A beautiful product',
+                            dateAdded: product.created_at || new Date().toISOString().split('T')[0],
+                            inStock: product.in_stock,
+                            isFeatured: product.is_featured,
+                            sku: product.sku
+                        }));
+                        
+                        if (window.productCardGenerator) {
+                            window.productCardGenerator.generateProductGrid('plantersGrid', fallbackProducts);
+                        }
+                        return;
+                    }
+                    
+                    // Convert to display format
+                    const displayProducts = planterProducts.map(product => ({
+                        id: product.id,
+                        name: product.name,
+                        size: getSizeFromProduct(product),
+                        currentPrice: product.formatted_price.replace('RM ', ''),
+                        originalPrice: product.formatted_sale_price ? product.formatted_sale_price.replace('RM ', '') : null,
+                        badgeType: getBadgeType(product),
+                        badgeText: getBadgeText(product),
+                        image: getValidImageUrl(product.primary_image),
+                        hoverImage: getHoverImageUrl(product.primary_image, product.secondary_image),
+                        category: getCategoryFromProduct(product),
+                        description: product.description || product.short_description || 'A beautiful planter for your plants',
+                        dateAdded: product.created_at || new Date().toISOString().split('T')[0],
+                        inStock: product.in_stock,
+                        isFeatured: product.is_featured,
+                        sku: product.sku
+                    }));
+                    
+                    console.log(`✅ Converted ${displayProducts.length} products to display format`);
+                    
+                    // Display products
+                    if (window.productCardGenerator) {
+                        window.productCardGenerator.generateProductGrid('plantersGrid', displayProducts);
+                        console.log('✅ Planter products displayed successfully');
+                    } else {
+                        console.error('❌ ProductCardGenerator not available');
+                    }
+                    
+                } else {
+                    console.warn('⚠️ No products found in API');
+                }
+                
+            } catch (error) {
+                console.error('❌ Error loading products from API:', error);
+            }
+        }
+        
+        function getSizeFromProduct(product) {
+            const name = product.name.toLowerCase();
+            if (name.includes('cm') && /\d+cm/.test(name)) {
+                const match = name.match(/(\d+)cm/);
+                return match ? `${match[1]}cm` : 'Medium';
+            }
+            if (name.includes('small')) return 'Small';
+            if (name.includes('large')) return 'Large';
+            return 'Medium';
+        }
+        
+        function getBadgeType(product) {
+            if (product.sale_price && product.sale_price < product.price) return 'sale';
+            if (!product.in_stock) return 'sold-out';
+            if (product.is_featured) return 'bestseller';
+            return 'new';
+        }
+        
+        function getBadgeText(product) {
+            if (product.sale_price && product.sale_price < product.price) return 'Sale';
+            if (!product.in_stock) return 'Sold Out';
+            if (product.is_featured) return 'Best Seller';
+            return 'New';
+        }
+        
+        function getCategoryFromProduct(product) {
+            if (product.categories && product.categories.length > 0) {
+                let category = product.categories[0].toLowerCase().replace(/\s+/g, '-');
+                
+                if (category.includes('pots') || category.includes('planters')) {
+                    return 'pots';
+                }
+                if (category.includes('indoor')) {
+                    return 'indoor-plants';
+                }
+                if (category.includes('outdoor')) {
+                    return 'outdoor-plants';
+                }
+                if (category.includes('succulent')) {
+                    return 'succulents';
+                }
+                if (category.includes('tool') || category.includes('light') || category.includes('grow')) {
+                    return 'tools';
+                }
+                
+                return category;
+            }
+            return 'pots';
+        }
+        
+        function getValidImageUrl(imageUrl) {
+            if (!imageUrl || imageUrl.trim() === '') {
+                return 'https://via.placeholder.com/300x300?text=Planter+Product';
+            }
+            
+            if (imageUrl.startsWith('http://') || imageUrl.startsWith('https://')) {
+                return imageUrl;
+            }
+            
+            if (imageUrl.startsWith('/')) {
+                return window.location.origin + imageUrl;
+            }
+            
+            return window.location.origin + '/image/' + imageUrl;
+        }
+        
+        function getHoverImageUrl(primaryImageUrl, secondaryImageUrl) {
+            if (secondaryImageUrl && secondaryImageUrl.trim() !== '' && secondaryImageUrl !== primaryImageUrl) {
+                return getValidImageUrl(secondaryImageUrl);
+            }
+            
+            return getValidImageUrl(primaryImageUrl);
+        }
+    </script>
+</body>
+</html>
+

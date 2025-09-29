@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Details - Bloomspace</title>
+    <meta name="description" content="Discover beautiful plants and add them to your cart at Bloomspace">
+    
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- CSS Files -->
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="product-detail.css">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+</head>
+<body class="product-detail-page">
+    <!-- Header and navigation will be loaded here by JavaScript -->
+
+    <!-- Breadcrumb Navigation -->
+    <nav class="breadcrumb-nav">
+        <div class="container">
+            <ol class="breadcrumb-list">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="index.html#new-arrivals">Plants</a></li>
+                <li class="active" id="breadcrumbProduct">Product Details</li>
+            </ol>
+        </div>
+    </nav>
+
+    <!-- Main Product Section -->
+    <main class="product-main">
+        <div class="container">
+            <div class="product-detail-grid">
+                <!-- Product Images - Left Side -->
+                <div class="product-images">
+                    <div class="image-stack">
+                        <!-- Main Image -->
+                        <div class="main-image-container">
+                            <img src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=800&h=800&fit=crop" 
+                                 alt="Plant - Main View" 
+                                 class="main-image" 
+                                 id="mainImage">
+                            <div class="image-overlay">
+                                <button class="zoom-btn" id="zoomBtn" title="Zoom Image" aria-label="Zoom Image">
+                                    <i class="fas fa-search-plus"></i>
+                                </button>
+                            </div>
+                            <div class="image-badges">
+                                <span class="badge sale">Sale</span>
+                                <span class="badge guarantee">14 Days Guarantee</span>
+                            </div>
+                        </div>
+
+                        <!-- Sub Images - 主照片下方的两张独立子照片 -->
+                        <div class="sub-images-container">
+                            <div class="sub-image-item">
+                                <img src="https://images.unsplash.com/photo-1466692476868-aef1dfb1e735?w=800&h=600&fit=crop" 
+                                     alt="Plant Care Instructions">
+                            </div>
+                            <div class="sub-image-item">
+                                <img src="https://images.unsplash.com/photo-1593691509543-c55fb32e5cee?w=800&h=600&fit=crop" 
+                                     alt="Plant Pot Details">
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- Product Information - Right Side (Sticky) -->
+                <div class="product-info">
+                    <div class="details-container">
+                        <div class="product-header">
+                            <h1 class="product-title" id="productTitle">Plant Name</h1>
+                            <p class="product-subtitle" id="productSubtitle">A beautiful plant for your home or office</p>
+                        </div>
+
+                        <!-- Price Section -->
+                        <div class="price-section">
+                            <div class="price-container">
+                                <span class="current-price" id="currentPrice">RM99.00</span>
+                                <span class="original-price" id="originalPrice" style="display: none;">RM128.00</span>
+                            </div>
+                            <div class="price-savings" style="display: none;">
+                                <span class="savings-text">You save RM29.00</span>
+                            </div>
+                        </div>
+
+                        <!-- Size Selection -->
+                        <div class="size-selection">
+                            <h3>Size</h3>
+                            <div class="size-options">
+                              <button class="size-option active" data-size="small">Small</button>
+                              <button class="size-option" data-size="medium">Medium</button>
+                              <button class="size-option" data-size="large">Large</button>
+                            </div>
+                          </div>
+                          
+  
+  
+                          
+                        <!-- Quantity Selection -->
+                        <div class="quantity-selection">
+                            <h3>Quantity</h3>
+                            <div class="quantity-controls">
+                                <button class="quantity-btn minus" id="quantityMinus" title="Decrease quantity" aria-label="Decrease quantity">
+                                    <i class="fas fa-minus"></i>
+                                </button>
+                                <input type="number" class="quantity-input" id="quantityInput" value="1" min="1" max="10" title="Quantity" aria-label="Product quantity">
+                                <button class="quantity-btn plus" id="quantityPlus" title="Increase quantity" aria-label="Increase quantity">
+                                    <i class="fas fa-plus"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Gift Options -->
+                        <div class="gift-options">
+                            <div class="gift-toggle">
+                                <input type="checkbox" id="giftCheckbox" class="gift-checkbox">
+                                <label for="giftCheckbox" class="gift-label">
+                                    <span class="checkbox-custom"></span>
+                                    <span class="gift-text">This is a gift</span>
+                                </label>
+                            </div>
+                            <div class="gift-message" id="giftMessage">
+                                <textarea placeholder="Add a personal message (optional)" maxlength="200"></textarea>
+                                <div class="char-count">0/200</div>
+                            </div>
+                        </div>
+
+                        <!-- Add to Cart Section -->
+                        <div class="add-to-cart-section">
+                            <button class="add-to-cart-btn" id="addToCartBtn">
+                                <i class="fas fa-shopping-cart"></i>
+                                <span>Add to Cart</span>
+                            </button>
+                            <div class="cart-actions">
+                                <button class="wishlist-btn" id="wishlistBtn" title="Add to Wishlist" aria-label="Add to Wishlist">
+                                    <i class="fas fa-heart"></i>
+                                </button>
+                                <button class="share-btn" id="shareBtn" title="Share Product" aria-label="Share Product">
+                                    <i class="fas fa-share-alt"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Product Features -->
+                        <div class="product-features">
+                            <div class="feature">
+                                <i class="fas fa-shipping-fast"></i>
+                                <span>Free shipping on orders RM150+</span>
+                            </div>
+                            <div class="feature">
+                                <i class="fas fa-shield-alt"></i>
+                                <span>14-day guarantee</span>
+                            </div>
+                            <div class="feature">
+                                <i class="fas fa-leaf"></i>
+                                <span>Easy care instructions included</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Product Details Tabs -->
+    <section class="product-tabs-section">
+        <div class="container">
+            <div class="product-tabs">
+                <div class="tab-navigation">
+                    <button class="tab-btn active" data-tab="details">Details & Care</button>
+                    <button class="tab-btn" data-tab="shipping">Shipping</button>
+                    <button class="tab-btn" data-tab="guarantee">Guarantee</button>
+                    <button class="tab-btn" data-tab="reviews">Reviews</button>
+                </div>
+                
+                <div class="tab-content">
+                    <div class="tab-panel active" id="details">
+                        <h3>Plant Care Instructions</h3>
+                        <div class="care-grid">
+                            <div class="care-item">
+                                <h4><i class="fas fa-sun"></i> Light</h4>
+                                <p>Bright, indirect light. Avoid direct sunlight which can burn the leaves.</p>
+                            </div>
+                            <div class="care-item">
+                                <h4><i class="fas fa-tint"></i> Water</h4>
+                                <p>Water when the top inch of soil is dry. Don't overwater.</p>
+                            </div>
+                            <div class="care-item">
+                                <h4><i class="fas fa-thermometer-half"></i> Temperature</h4>
+                                <p>Keep between 18-24°C. Avoid cold drafts.</p>
+                            </div>
+                            <div class="care-item">
+                                <h4><i class="fas fa-seedling"></i> Fertilizer</h4>
+                                <p>Feed monthly during growing season with balanced fertilizer.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="tab-panel" id="shipping">
+                        <h3>Shipping Information</h3>
+                        <div class="shipping-info">
+                            <div class="shipping-option">
+                                <h4>Standard Shipping</h4>
+                                <p>3-5 business days • RM8.00</p>
+                                <p>Free on orders RM150+</p>
+                            </div>
+                            <div class="shipping-option">
+                                <h4>Express Shipping</h4>
+                                <p>1-2 business days • RM15.00</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="tab-panel" id="guarantee">
+                        <h3>Our Guarantee</h3>
+                        <p>We guarantee your plant will arrive healthy and beautiful. If you're not satisfied within 14 days, we'll replace it or provide a full refund.</p>
+                    </div>
+                    
+                    <div class="tab-panel" id="reviews">
+                        <h3>Customer Reviews</h3>
+                        <div class="reviews-summary">
+                            <div class="rating">
+                                <div class="stars">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                                <span>4.8 out of 5 (127 reviews)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Image Zoom Modal -->
+    <div class="image-zoom-modal" id="imageZoomModal">
+        <div class="zoom-overlay"></div>
+        <div class="zoom-container">
+            <button class="zoom-close" id="zoomClose" title="Close Zoom" aria-label="Close Zoom">
+                <i class="fas fa-times"></i>
+            </button>
+            <button class="zoom-prev" id="zoomPrev" title="Previous Image" aria-label="Previous Image">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+            <button class="zoom-next" id="zoomNext" title="Next Image" aria-label="Next Image">
+                <i class="fas fa-chevron-right"></i>
+            </button>
+            <img src="" alt="Zoomed Image" class="zoom-image" id="zoomImage">
+        </div>
+    </div>
+
+    <!-- Footer will be loaded here by JavaScript -->
+
+    <!-- JavaScript Files -->
+    <script src="script.js?v=6.2"></script>
+    <script src="navigation-loader.js"></script>
+    <script src="footer-loader.js"></script>
+    <script src="product-detail.js?v=1.1"></script>
+    <script>
+        // Initialize Product Detail Page
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('DOM loaded, initializing ProductDetailPage');
+            window.productDetailPage = new ProductDetailPage();
+        });
+    </script>
+</body>
+</html>

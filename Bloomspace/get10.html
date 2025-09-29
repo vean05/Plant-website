@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Get RM10 Off - Sign Up for Bloomspace</title>
+    <meta name="description" content="Sign up for Bloomspace and get RM10 off your first order. Join our plant-loving community today!">
+    
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- CSS Files -->
+    <link rel="stylesheet" href="styles.css?v=16.0">
+    <link rel="stylesheet" href="get10.css">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+</head>
+<body class="signup-page">
+    <!-- Header and navigation will be loaded here by JavaScript -->
+
+    <!-- Main Content -->
+    <main class="signup-main">
+        <!-- Hero Section with RM10 Offer -->
+        <section class="signup-hero">
+            <div class="hero-background">
+                <!-- Animated Particles Background -->
+                <div class="particles-container">
+                    <canvas id="particlesCanvas"></canvas>
+                </div>
+                
+                <!-- Floating Elements -->
+                <div class="floating-elements">
+                    <div class="floating-leaf leaf-1">🍃</div>
+                    <div class="floating-leaf leaf-2">🌿</div>
+                    <div class="floating-leaf leaf-3">🍀</div>
+                    <div class="floating-leaf leaf-4">🌱</div>
+                    <div class="floating-leaf leaf-5">🌸</div>
+                    <div class="floating-leaf leaf-6">🦋</div>
+                </div>
+                
+
+                
+                <!-- Geometric Shapes -->
+                <div class="geometric-shapes">
+                    <div class="shape circle-1"></div>
+                    <div class="shape circle-2"></div>
+                    <div class="shape triangle-1"></div>
+                    <div class="shape square-1"></div>
+                </div>
+                
+                <!-- Starry Background -->
+                <div class="stars">
+                    <div class="star star-1"></div>
+                    <div class="star star-2"></div>
+                    <div class="star star-3"></div>
+                    <div class="star star-4"></div>
+                    <div class="star star-5"></div>
+                    <div class="star star-6"></div>
+                    <div class="star star-7"></div>
+                    <div class="star star-8"></div>
+                </div>
+            </div>
+            <div class="container">
+                <div class="signup-hero-content">
+                    <div class="hero-text">
+                        <div class="offer-highlight">
+                            <span class="offer-badge">
+                                <i class="fas fa-gift"></i>
+                                LIMITED TIME OFFER
+                            </span>
+                            <h1>Get <span class="rm10">RM10 OFF</span><br>Your First Order!</h1>
+                        </div>
+                        <h2>Join Bloomspace's Plant-Loving Community</h2>
+                        <div class="benefits-preview">
+                            <div class="benefit">
+                                <i class="fas fa-leaf"></i>
+                                <span>1000+ Beautiful Plants</span>
+                            </div>
+                            <div class="benefit">
+                                <i class="fas fa-shipping-fast"></i>
+                                <span>Free Shipping RM150+</span>
+                            </div>
+                            <div class="benefit">
+                                <i class="fas fa-shield-alt"></i>
+                                <span>14-Day Guarantee</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 🎯 多步骤互动注册流程 -->
+                    <div class="multi-step-container">
+                        
+                        <!-- 步骤1: 欢迎界面 -->
+                        <div class="signup-step active" id="step-welcome">
+                            <div class="welcome-card">
+                                <div class="form-glow-effect"></div>
+                                
+                                <div class="welcome-header">
+                                    <div class="welcome-icon">
+                                        <i class="fas fa-seedling"></i>
+                                    </div>
+                                    <h3 class="step-title">Ready to Join?</h3>
+                                    <p class="step-subtitle">Get your <span class="rm10-mini">RM10</span> welcome bonus in 3 easy steps</p>
+                                </div>
+                                
+                                <div class="steps-preview">
+                                    <div class="preview-step">
+                                        <div class="preview-number">1</div>
+                                        <div class="preview-content">
+                                            <strong>Basic Info</strong>
+                                            <small>Name & Email</small>
+                                        </div>
+                                    </div>
+                                    <div class="preview-step">
+                                        <div class="preview-number">2</div>
+                                        <div class="preview-content">
+                                            <strong>Account Setup</strong>
+                                            <small>Password & Phone</small>
+                                        </div>
+                                    </div>
+                                    <div class="preview-step">
+                                        <div class="preview-number">3</div>
+                                        <div class="preview-content">
+                                            <strong>Preferences</strong>
+                                            <small>Plant interests</small>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <button class="start-btn" onclick="startSignup()">
+                                    <span class="btn-content">
+                                        <span class="btn-text">Start Registration</span>
+                                        <i class="btn-icon fas fa-arrow-right"></i>
+                                    </span>
+                                    <div class="btn-shine"></div>
+                                </button>
+                                
+                                <div class="login-link">
+                                    <p>Already have an account? <a href="login.html" class="login-link-text">Login</a></p>
+                                </div>
+                                
+                                <div class="trust-indicators">
+                                    <div class="trust-item">
+                                        <i class="fas fa-lock"></i>
+                                        <span>100% Secure</span>
+                                    </div>
+                                    <div class="trust-item">
+                                        <i class="fas fa-clock"></i>
+                                        <span>2 minutes</span>
+                                    </div>
+                                    <div class="trust-item">
+                                        <i class="fas fa-gift"></i>
+                                        <span>Instant RM10</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- 步骤2: 基本信息 -->
+                        <div class="signup-step" id="step-basic">
+                            <div class="form-card">
+                                <div class="form-glow-effect"></div>
+                                
+                                <div class="step-header">
+                                    <button class="back-btn" onclick="prevStep()" title="Go back to previous step">
+                                        <i class="fas fa-arrow-left"></i>
+                                    </button>
+                                    <div class="step-info">
+                                        <div class="step-counter">Step 1 of 3</div>
+                                        <h3 class="step-title">Basic Information</h3>
+                                    </div>
+                                    <div class="step-dots">
+                                        <div class="dot active"></div>
+                                        <div class="dot"></div>
+                                        <div class="dot"></div>
+                                    </div>
+                                </div>
+                                
+                                <div class="progress-wrapper">
+                                    <div class="progress-bar">
+                                        <div class="progress-fill" style="width: 33%"></div>
+                                    </div>
+                                    <span class="progress-text">Progress: 33%</span>
+                                </div>
+                        
+                                <form class="step-form" id="basicForm">
+                                    <div class="form-row">
+                                        <div class="form-group">
+                                            <label for="firstName">First Name</label>
+                                            <input type="text" id="firstName" name="firstName" required>
+                                            <i class="fas fa-user input-icon"></i>
+                                            <div class="validation-message"></div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="lastName">Last Name</label>
+                                            <input type="text" id="lastName" name="lastName" required>
+                                            <i class="fas fa-user input-icon"></i>
+                                            <div class="validation-message"></div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <label for="email">Email Address</label>
+                                        <input type="email" id="email" name="email" required>
+                                        <i class="fas fa-envelope input-icon"></i>
+                                        <div class="validation-message"></div>
+                                    </div>
+                                    
+                                    <button type="button" class="continue-btn" onclick="nextStep()">
+                                        <span class="btn-content">
+                                            <span class="btn-text">Continue</span>
+                                            <i class="btn-icon fas fa-arrow-right"></i>
+                                        </span>
+                                        <div class="btn-shine"></div>
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                        
+                        <!-- 步骤3: 账户设置 -->
+                        <div class="signup-step" id="step-account">
+                            <div class="form-card">
+                                <div class="form-glow-effect"></div>
+                                
+                                <div class="step-header">
+                                    <button class="back-btn" onclick="prevStep()" title="Go back to previous step">
+                                        <i class="fas fa-arrow-left"></i>
+                                    </button>
+                                    <div class="step-info">
+                                        <div class="step-counter">Step 2 of 3</div>
+                                        <h3 class="step-title">Account Setup</h3>
+                                    </div>
+                                    <div class="step-dots">
+                                        <div class="dot completed"></div>
+                                        <div class="dot active"></div>
+                                        <div class="dot"></div>
+                                    </div>
+                                </div>
+                                
+                                <div class="progress-wrapper">
+                                    <div class="progress-bar">
+                                        <div class="progress-fill" style="width: 66%"></div>
+                                    </div>
+                                    <span class="progress-text">Progress: 66%</span>
+                                </div>
+                                
+                                <form class="step-form" id="accountForm">
+                                    <div class="form-group">
+                                        <label for="password">Password</label>
+                                        <input type="password" id="password" name="password" required>
+                                        <i class="fas fa-lock input-icon"></i>
+                                        <div class="password-strength"></div>
+                                        <div class="validation-message"></div>
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <label for="confirmPassword">Confirm Password</label>
+                                        <input type="password" id="confirmPassword" name="confirmPassword" required>
+                                        <i class="fas fa-lock input-icon"></i>
+                                        <div class="validation-message"></div>
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <label for="phone">Phone Number (Optional)</label>
+                                        <input type="tel" id="phone" name="phone">
+                                        <i class="fas fa-phone input-icon"></i>
+                                        <div class="validation-message"></div>
+                                    </div>
+                                    
+                                    <button type="button" class="continue-btn" onclick="nextStep()">
+                                        <span class="btn-content">
+                                            <span class="btn-text">Continue</span>
+                                            <i class="btn-icon fas fa-arrow-right"></i>
+                                        </span>
+                                        <div class="btn-shine"></div>
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                        
+                        <!-- 步骤4: 偏好和完成 -->
+                        <div class="signup-step" id="step-preferences">
+                            <div class="form-card">
+                                <div class="form-glow-effect"></div>
+                                
+                                <div class="step-header">
+                                    <button class="back-btn" onclick="prevStep()" title="Go back to previous step">
+                                        <i class="fas fa-arrow-left"></i>
+                                    </button>
+                                    <div class="step-info">
+                                        <div class="step-counter">Step 3 of 3</div>
+                                        <h3 class="step-title">Final Step</h3>
+                                    </div>
+                                    <div class="step-dots">
+                                        <div class="dot completed"></div>
+                                        <div class="dot completed"></div>
+                                        <div class="dot active"></div>
+                                    </div>
+                                </div>
+                                
+                                <div class="progress-wrapper">
+                                    <div class="progress-bar">
+                                        <div class="progress-fill" style="width: 100%"></div>
+                                    </div>
+                                    <span class="progress-text">Almost Done!</span>
+                                </div>
+                                
+                                <form class="step-form" id="preferencesForm">
+                                    <div class="form-group checkbox-group">
+                                        <label class="checkbox-wrapper">
+                                            <input type="checkbox" id="newsletter" name="newsletter" checked>
+                                            <span class="checkmark">
+                                                <i class="fas fa-check"></i>
+                                            </span>
+                                            <span class="checkbox-text">Subscribe to our newsletter for plant care tips and exclusive offers</span>
+                                        </label>
+                                    </div>
+                                    
+                                    <div class="form-group checkbox-group">
+                                        <label class="checkbox-wrapper">
+                                            <input type="checkbox" id="terms" name="terms" required>
+                                            <span class="checkmark">
+                                                <i class="fas fa-check"></i>
+                                            </span>
+                                            <span class="checkbox-text">I agree to the <a href="#" class="terms-link">Terms of Service</a> and <a href="#" class="terms-link">Privacy Policy</a></span>
+                                        </label>
+                                    </div>
+                                    
+                                    <button type="submit" class="complete-btn" onclick="completeSignup()">
+                                        <span class="btn-content">
+                                            <span class="btn-text">Claim My RM10!</span>
+                                            <i class="btn-icon fas fa-gift"></i>
+                                        </span>
+                                        <div class="btn-shine"></div>
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                        
+                        <!-- 🎉 成功页面 -->
+                        <div class="signup-step" id="step-success">
+                            <div class="success-card">
+                                <div class="form-glow-effect"></div>
+                                
+                                <div class="success-content">
+                                    <div class="success-icon">
+                                        <i class="fas fa-check-circle"></i>
+                                    </div>
+                                    <h3 class="success-title">Welcome to Bloomspace!</h3>
+                                    <p class="success-message">
+                                        Congratulations! Your <span class="rm10-mini">RM10</span> discount 
+                                        has been added to your account.
+                                    </p>
+                                    
+                                    <div class="voucher-display">
+                                        <div class="voucher-code">WELCOME10</div>
+                                        <button class="copy-btn" onclick="copyVoucher()">
+                                            <i class="fas fa-copy"></i>
+                                        </button>
+                                    </div>
+                                    
+                                    <div class="success-actions">
+                                        <a href="index.html" class="action-btn primary">
+                                            Start Shopping
+                                            <i class="fas fa-shopping-cart"></i>
+                                        </a>
+                                        <a href="#" class="action-btn secondary">
+                                            Browse Plants
+                                            <i class="fas fa-leaf"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Enhanced Benefits Section -->
+        <section class="benefits-showcase">
+            <div class="container">
+                <div class="benefits-header">
+                    <h2>🌿 Join 10,000+ Happy Plant Parents</h2>
+                    <p>Discover why Bloomspace is Malaysia's #1 choice for premium plants</p>
+                </div>
+                
+                <div class="benefits-interactive">
+                    <!-- Feature Cards with Hover Effects -->
+                    <div class="feature-cards">
+                        <div class="feature-card instant-reward">
+                            <div class="card-icon">💰</div>
+                            <div class="card-content">
+                                <h3>Instant RM10 Bonus</h3>
+                                <p>No waiting, no minimum spend</p>
+                                <div class="card-highlight">Use immediately!</div>
+                            </div>
+                            <div class="card-animation"></div>
+                        </div>
+                        
+                        <div class="feature-card plant-variety">
+                            <div class="card-icon">🌺</div>
+                            <div class="card-content">
+                                <h3>1,500+ Premium Plants</h3>
+                                <p>From succulents to rare tropicals</p>
+                                <div class="card-highlight">New arrivals weekly</div>
+                            </div>
+                            <div class="card-animation"></div>
+                        </div>
+                        
+                        <div class="feature-card fast-delivery">
+                            <div class="card-icon">🚚</div>
+                            <div class="card-content">
+                                <h3>Same-Day Delivery</h3>
+                                <p>Klang Valley orders before 2PM</p>
+                                <div class="card-highlight">Free above RM150</div>
+                            </div>
+                            <div class="card-animation"></div>
+                        </div>
+                    </div>
+                    
+                    <!-- Stats Section -->
+                    <div class="stats-section">
+                        <div class="stat-item">
+                            <div class="stat-number">10,000+</div>
+                            <div class="stat-label">Happy Customers</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">98%</div>
+                            <div class="stat-label">5-Star Reviews</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">24/7</div>
+                            <div class="stat-label">Plant Care Support</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">100%</div>
+                            <div class="stat-label">Quality Guarantee</div>
+                        </div>
+                    </div>
+                    
+                    <!-- Trust Badges -->
+                    <div class="trust-badges">
+                        <div class="badge">
+                            <i class="fas fa-certificate"></i>
+                            <span>Certified Plant Nursery</span>
+                        </div>
+                        <div class="badge">
+                            <i class="fas fa-leaf"></i>
+                            <span>Eco-Friendly Packaging</span>
+                        </div>
+                        <div class="badge">
+                            <i class="fas fa-heart"></i>
+                            <span>Plant Health Guarantee</span>
+                        </div>
+                        <div class="badge">
+                            <i class="fas fa-award"></i>
+                            <span>Best Plant Store 2024</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Social Proof Section -->
+        <section class="social-proof">
+            <div class="container">
+                <h3>Join 50,000+ Happy Plant Parents</h3>
+                <div class="testimonials">
+                    <div class="testimonial">
+                        <div class="testimonial-content">
+                            <div class="stars">★★★★★</div>
+                            <p>"Signed up for the RM10 discount and fell in love with their plant selection. Amazing quality and great customer service!"</p>
+                        </div>
+                        <div class="testimonial-author">
+                            <img src="https://images.unsplash.com/photo-1494790108755-2616b612b786?w=60&h=60&fit=crop&crop=face" alt="Sarah L.">
+                            <div class="author-info">
+                                <h5>Sarah L.</h5>
+                                <span>Verified Customer</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="testimonial">
+                        <div class="testimonial-content">
+                            <div class="stars">★★★★★</div>
+                            <p>"The RM10 discount was a great way to try out their service. Now I'm a regular customer - their plants are incredible!"</p>
+                        </div>
+                        <div class="testimonial-author">
+                            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=60&h=60&fit=crop&crop=face" alt="Michael R.">
+                            <div class="author-info">
+                                <h5>Michael R.</h5>
+                                <span>Plant Enthusiast</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="testimonial">
+                        <div class="testimonial-content">
+                            <div class="stars">★★★★★</div>
+                            <p>"Best decision ever! The signup process was smooth and I love my new plant collection. Highly recommend!"</p>
+                        </div>
+                        <div class="testimonial-author">
+                            <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=60&h=60&fit=crop&crop=face" alt="Emma K.">
+                            <div class="author-info">
+                                <h5>Emma K.</h5>
+                                <span>Plant Parent</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>About Us</h3>
+                    <ul>
+                        <li><a href="#">Our Story</a></li>
+                        <li><a href="#">Plant Care Guide</a></li>
+                        <li><a href="#">Sustainability</a></li>
+                        <li><a href="#">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Customer Service</h3>
+                    <ul>
+                        <li><a href="#">Shipping Info</a></li>
+                        <li><a href="#">Returns & Exchanges</a></li>
+                        <li><a href="#">FAQ</a></li>
+                        <li><a href="#">Size Guide</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Connect With Us</h3>
+                    <div class="footer-newsletter">
+                        <input type="email" placeholder="Email address">
+                        <button type="submit">Subscribe</button>
+                    </div>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-pinterest"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div class="copyright">
+                    © 2024 Bloomspace. All rights reserved.
+                </div>
+                <div class="footer-links">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                    <a href="#">Cookie Policy</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+    
+    <!-- JavaScript Files -->
+    <script src="script.js?v=6.0"></script>
+    <script src="navigation-loader.js"></script>
+    <script src="footer-loader.js"></script>
+    <script src="get10.js"></script>
+</body>
+</html>

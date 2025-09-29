@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grow Lights - Bloomspace | LED Plant Growing Lights</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body class="growlight-page">
+    <!-- Navigation will be loaded dynamically -->
+
+    <!-- Main Content -->
+    <main>
+        <!-- Hero Section -->
+        <section class="page-hero">
+            <div class="container">
+                <div class="hero-content-center">
+                    <h1>Grow Lights</h1>
+                    <h2>Professional LED grow lights for healthy plant growth indoors</h2>
+                    <div class="hero-pills">
+                        <span class="pill">💡 LED Technology</span>
+                        <span class="pill">🌈 Full Spectrum</span>
+                        <span class="pill">⚡ Energy Efficient</span>
+                        <span class="pill">🕐 Timer Function</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Products Section -->
+        <section class="all-products-section">
+            <div class="container">
+                <div class="products-grid" id="growlightsGrid">
+                    <!-- Products will be loaded dynamically -->
+                </div>
+                
+                <!-- Load More Button -->
+                <div class="load-more-container">
+                    <button class="btn-load-more" id="loadMoreBtn">
+                        <i class="fas fa-plus"></i>
+                        Load More Products
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section class="features">
+            <div class="container">
+                <h2>Why Choose Our Grow Lights?</h2>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <i class="fas fa-sun"></i>
+                        <h3>Full Spectrum</h3>
+                        <p>Complete light spectrum from 380nm to 800nm, providing everything your plants need for photosynthesis.</p>
+                    </div>
+                    <div class="feature-card">
+                        <i class="fas fa-leaf"></i>
+                        <h3>Energy Efficient</h3>
+                        <p>Advanced LED technology consumes 50% less energy than traditional grow lights while providing better results.</p>
+                    </div>
+                    <div class="feature-card">
+                        <i class="fas fa-clock"></i>
+                        <h3>Smart Timer</h3>
+                        <p>Built-in timer with 3/9/12 hour cycles to automate your plant lighting schedule perfectly.</p>
+                    </div>
+                    <div class="feature-card">
+                        <i class="fas fa-temperature-high"></i>
+                        <h3>Low Heat</h3>
+                        <p>Cool running LEDs won't burn your plants or overheat your growing space, safe for close placement.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Newsletter Section -->
+        <section class="newsletter">
+            <div class="container">
+                <h2>Stay in the Loop</h2>
+                <p>Get notified about new grow light technology and exclusive offers</p>
+                <form class="newsletter-form">
+                    <input type="email" placeholder="Enter your email address" required>
+                    <button type="submit">Subscribe</button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer will be loaded dynamically -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Bloomspace</h3>
+                    <p>Your trusted partner in creating beautiful, green spaces that bring life and joy to every home.</p>
+                    <div class="social-links">
+                        <a href="#" aria-label="Follow us on Facebook"><i class="fab fa-facebook"></i></a>
+                        <a href="#" aria-label="Follow us on Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" aria-label="Follow us on Twitter"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="new-arrivals.html">New Arrivals</a></li>
+                        <li><a href="care-tools.html">Care Tools</a></li>
+                        <li><a href="#about">About Us</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Customer Service</h4>
+                    <ul>
+                        <li><a href="#shipping">Shipping Info</a></li>
+                        <li><a href="#returns">Returns</a></li>
+                        <li><a href="#faq">FAQ</a></li>
+                        <li><a href="#contact">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact Info</h4>
+                    <p><i class="fas fa-phone"></i> +60 12-345-6789</p>
+                    <p><i class="fas fa-envelope"></i> hello@bloomspace.my</p>
+                    <p><i class="fas fa-map-marker-alt"></i> Kuala Lumpur, Malaysia</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Bloomspace. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js?v=6.5"></script>
+    <script src="navigation-loader.js"></script>
+    <script src="footer-loader.js"></script>
+    <script>
+        // Initialize Grow Lights page when DOM is loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('🔄 Grow Light page DOM loaded');
+            
+            // Load products from API
+            loadGrowLightProducts();
+        });
+        
+        async function loadGrowLightProducts() {
+            console.log('🔄 Loading products from API for category 16...');
+            
+            try {
+                // Load all products first, then filter by category 16
+                const response = await fetch('api/products/list.php?limit=100&sort=created_at&order=DESC');
+                const data = await response.json();
+                
+                if (data.success && data.data.products) {
+                    console.log(`✅ Loaded ${data.data.products.length} products from API`);
+                    
+                    // Filter products by category 16
+                    const category16Products = data.data.products.filter(product => {
+                        // Check if product has category 16
+                        return product.categories && product.categories.some(cat => {
+                            // Check if any category has ID 16 or name contains the category
+                            return cat.id === 16 || cat.toLowerCase().includes('grow') || cat.toLowerCase().includes('light');
+                        });
+                    });
+                    
+                    console.log(`✅ Found ${category16Products.length} products in category 16`);
+                    
+                    // Convert products to display format
+                    const displayProducts = category16Products.map(product => ({
+                        id: product.id,
+                        name: product.name,
+                        size: getSizeFromProduct(product),
+                        currentPrice: product.formatted_price.replace('RM ', ''),
+                        originalPrice: product.formatted_sale_price ? product.formatted_sale_price.replace('RM ', '') : null,
+                        badgeType: getBadgeType(product),
+                        badgeText: getBadgeText(product),
+                        image: getValidImageUrl(product.primary_image),
+                        hoverImage: getHoverImageUrl(product.primary_image, product.secondary_image),
+                        category: getCategoryFromProduct(product),
+                        dateAdded: product.created_at || new Date().toISOString().split('T')[0],
+                        inStock: product.in_stock,
+                        isFeatured: product.is_featured,
+                        description: product.description,
+                        sku: product.sku
+                    }));
+                    
+                    console.log(`✅ Converted ${displayProducts.length} products to display format`);
+                    
+                    // Display products
+                    if (window.productCardGenerator) {
+                        window.productCardGenerator.generateProductGrid('growlightsGrid', displayProducts);
+                        console.log('✅ Products displayed successfully');
+                    } else {
+                        console.error('❌ ProductCardGenerator not available');
+                    }
+                    
+                } else {
+                    console.warn('⚠️ No products found in category 16');
+                }
+                
+            } catch (error) {
+                console.error('❌ Error loading products from API:', error);
+            }
+        }
+        
+        function getSizeFromProduct(product) {
+            const name = product.name.toLowerCase();
+            if (name.includes('w') && /\d+w/.test(name)) {
+                const match = name.match(/(\d+)w/);
+                return match ? `${match[1]}W` : 'Medium';
+            }
+            return 'Medium';
+        }
+        
+        function getBadgeType(product) {
+            if (product.sale_price && product.sale_price < product.price) return 'sale';
+            if (!product.in_stock) return 'sold-out';
+            if (product.is_featured) return 'bestseller';
+            return 'new';
+        }
+        
+        function getBadgeText(product) {
+            if (product.sale_price && product.sale_price < product.price) return 'Sale';
+            if (!product.in_stock) return 'Sold Out';
+            if (product.is_featured) return 'Best Seller';
+            return 'New';
+        }
+        
+        function getCategoryFromProduct(product) {
+            if (product.categories && product.categories.length > 0) {
+                let category = product.categories[0].toLowerCase().replace(/\s+/g, '-');
+                
+                if (category.includes('pots') || category.includes('planters')) {
+                    return 'pots';
+                }
+                if (category.includes('indoor')) {
+                    return 'indoor-plants';
+                }
+                if (category.includes('outdoor')) {
+                    return 'outdoor-plants';
+                }
+                if (category.includes('succulent')) {
+                    return 'succulents';
+                }
+                if (category.includes('tool') || category.includes('light') || category.includes('grow')) {
+                    return 'tools';
+                }
+                
+                return category;
+            }
+            return 'tools';
+        }
+        
+        function getValidImageUrl(imageUrl) {
+            if (!imageUrl || imageUrl.trim() === '') {
+                return 'https://via.placeholder.com/300x300?text=Plant+Product';
+            }
+            
+            if (imageUrl.startsWith('http://') || imageUrl.startsWith('https://')) {
+                return imageUrl;
+            }
+            
+            if (imageUrl.startsWith('/')) {
+                return window.location.origin + imageUrl;
+            }
+            
+            return window.location.origin + '/image/' + imageUrl;
+        }
+        
+        function getHoverImageUrl(primaryImageUrl, secondaryImageUrl) {
+            if (secondaryImageUrl && secondaryImageUrl.trim() !== '' && secondaryImageUrl !== primaryImageUrl) {
+                return getValidImageUrl(secondaryImageUrl);
+            }
+            
+            return getValidImageUrl(primaryImageUrl);
+        }
+    </script>
+</body>
+</html>
+

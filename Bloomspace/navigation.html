@@ -1,0 +1,136 @@
+<!-- Navigation Component - Include this in all pages -->
+<header class="header">
+    <div class="header-top">
+        <div class="container">
+            <div class="sale-banner">
+                [SALE] 10% off plants, with code "PLANT10". 15% off growlights, with code "LIGHT15". Terms apply.
+            </div>
+            <div class="shipping-info">
+                Ships to all Semenanjung Malaysia, Free Shipping above RM150. Self pickup available. 14 Days Guarantee!
+            </div>
+        </div>
+    </div>
+    
+    <div class="header-main">
+        <div class="container">
+            <div class="header-left">
+                <button class="mobile-menu-btn" aria-label="Open menu"><i class="fas fa-bars" aria-hidden="true"></i></button>
+                <div class="logo">
+                    <a href="index.html">
+                        <h1>Bloomspace</h1>
+                    </a>
+                </div>
+            </div>
+            
+            <nav class="header-nav">
+                <ul class="nav-menu">
+                    <li><a href="get10.html">Get RM10</a></li>
+                    <li><a href="plant-gifts.html">Plant Gifts</a></li>
+                    <li><a href="new-arrivals.html">New Arrivals</a></li>
+                    <li class="dropdown">
+                        <a href="#others">Others <i class="fas fa-chevron-down"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="artificial-plant.html">Artificial Plant</a></li>
+                            <li><a href="planters.html">Planters</a></li>
+                            <li><a href="care-tools.html">Care Tools</a></li>
+                            <li><a href="growlight.html">Growlight</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="events.html">Events</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="profile.html" class="profile-link">Profile</a></li>
+                </ul>
+            </nav>
+            
+            <div class="header-right">
+                <div class="user-actions">
+                    <div class="user-menu">
+                        <a href="login.html" class="login-btn" id="loginBtn" aria-label="Login" title="Login"><i class="fas fa-user" aria-hidden="true"></i></a>
+                        <div class="user-dropdown" id="userDropdown" style="display: none;">
+                            <div class="user-info">
+                                <span id="userEmailDisplay"></span>
+                            </div>
+                            <a href="profile.html" class="dropdown-item">
+                                <i class="fas fa-user"></i> Profile
+                            </a>
+                            <a href="#" class="dropdown-item" onclick="logout()">
+                                <i class="fas fa-sign-out-alt"></i> Logout
+                            </a>
+                        </div>
+                    </div>
+                    <button class="cart-btn" aria-label="Open cart" title="Open cart"><i class="fas fa-shopping-cart" aria-hidden="true"></i></button>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Mobile Sidebar Navigation -->
+<div class="mobile-sidebar">
+    <div class="mobile-sidebar-header">
+        <h2>Menu</h2>
+        <button class="mobile-sidebar-close" aria-label="Close menu">
+            <i class="fas fa-times"></i>
+        </button>
+    </div>
+    
+    <nav class="mobile-sidebar-nav">
+        <ul>
+            <li><a href="get10.html">Get RM10</a></li>
+            <li><a href="plant-gifts.html">Plant Gifts</a></li>
+            <li><a href="new-arrivals.html">New Arrivals</a></li>
+            <li class="dropdown">
+                <a href="#others">
+                    Others 
+                    <i class="fas fa-chevron-down"></i>
+                </a>
+                <ul class="dropdown-menu">
+                    <li><a href="artificial-plant.html">Artificial Plant</a></li>
+                    <li><a href="planters.html">Planters</a></li>
+                    <li><a href="care-tools.html">Care Tools</a></li>
+                    <li><a href="growlight.html">Growlight</a></li>
+                </ul>
+            </li>
+            <li><a href="events.html">Events</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="profile.html" class="profile-link">Profile</a></li>
+        </ul>
+    </nav>
+    
+    <div class="mobile-sidebar-footer">
+        <a href="login.html" class="login-btn">
+            <i class="fas fa-user"></i>
+            Login
+        </a>
+    </div>
+</div>
+
+<!-- Mobile Sidebar Overlay -->
+<div class="mobile-sidebar-overlay"></div>
+
+<!-- Shopping Cart Sidebar -->
+<div id="cartSidebar" class="cart-sidebar">
+    <div class="cart-header">
+        <h3>Shopping Cart</h3>
+        <button id="closeCart" class="close-cart" aria-label="Close cart">
+            <i class="fas fa-times"></i>
+        </button>
+    </div>
+    
+    <div class="cart-content">
+        <div id="cartItems" class="cart-items">
+            <p class="empty-cart">Your cart is empty</p>
+        </div>
+        
+        <div class="cart-footer">
+            <div class="cart-total">
+                <span>Total: </span>
+                <span id="cartTotal">RM0.00</span>
+            </div>
+            <button class="checkout-btn">Proceed to Checkout</button>
+        </div>
+    </div>
+</div>
+
+<!-- Cart Overlay -->
+<div id="cartOverlay" class="cart-overlay"></div>

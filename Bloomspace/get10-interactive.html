@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Get RM10 Off - Interactive Signup | Plant Store</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="navigation.html" rel="stylesheet">
+    <link href="get10-interactive.css" rel="stylesheet">
+</head>
+<body class="signup-page">
+    <!-- Navigation -->
+    <div id="navigation-placeholder"></div>
+    
+    <main class="signup-main">
+        <!-- Hero Section -->
+        <section class="signup-hero">
+            <div class="hero-background">
+                <!-- Particle System -->
+                <div class="particles-container">
+                    <canvas id="particlesCanvas"></canvas>
+                </div>
+                
+                <!-- Floating Elements -->
+                <div class="floating-elements">
+                    <div class="floating-leaf leaf-1">🌿</div>
+                    <div class="floating-leaf leaf-2">🍃</div>
+                    <div class="floating-leaf leaf-3">🌱</div>
+                    <div class="floating-leaf leaf-4">🌸</div>
+                    <div class="floating-leaf leaf-5">🪴</div>
+                    <div class="floating-leaf leaf-6">🦋</div>
+                </div>
+                
+                <!-- Geometric Shapes -->
+                <div class="geometric-shapes">
+                    <div class="shape circle-1"></div>
+                    <div class="shape circle-2"></div>
+                    <div class="shape triangle-1"></div>
+                    <div class="shape square-1"></div>
+                </div>
+                
+                <!-- Starry Background -->
+                <div class="stars">
+                    <div class="star star-1"></div>
+                    <div class="star star-2"></div>
+                    <div class="star star-3"></div>
+                    <div class="star star-4"></div>
+                    <div class="star star-5"></div>
+                    <div class="star star-6"></div>
+                    <div class="star star-7"></div>
+                    <div class="star star-8"></div>
+                </div>
+            </div>
+            
+            <div class="container">
+                <div class="signup-hero-content">
+                    <!-- Left: Hero Text -->
+                    <div class="hero-text">
+                        <div class="offer-highlight">
+                            <span class="offer-badge">
+                                <i class="fas fa-gift"></i>
+                                LIMITED TIME OFFER
+                            </span>
+                            <h1>Get <span class="rm10">RM10 OFF</span><br>Your First Order!</h1>
+                        </div>
+                        <h2>Join Bloomspace's Plant-Loving Community</h2>
+                        <div class="benefits-preview">
+                            <div class="benefit">
+                                <i class="fas fa-leaf"></i>
+                                <span>1000+ Beautiful Plants</span>
+                            </div>
+                            <div class="benefit">
+                                <i class="fas fa-shipping-fast"></i>
+                                <span>Free Shipping RM150+</span>
+                            </div>
+                            <div class="benefit">
+                                <i class="fas fa-shield-alt"></i>
+                                <span>14-Day Guarantee</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Right: Interactive Multi-Step Signup -->
+                    <div class="multi-step-container">
+                        
+                        <!-- 🎯 Step 1: Welcome Screen -->
+                        <div class="signup-step active" id="step-welcome">
+                            <div class="welcome-card">
+                                <div class="form-glow-effect"></div>
+                                
+                                <div class="welcome-header">
+                                    <div class="welcome-icon">
+                                        <i class="fas fa-seedling"></i>
+                                    </div>
+                                    <h3 class="step-title">Ready to Join?</h3>
+                                    <p class="step-subtitle">Get your <span class="rm10-mini">RM10</span> welcome bonus in 3 easy steps</p>
+                                </div>
+                                
+                                <div class="steps-preview">
+                                    <div class="preview-step">
+                                        <div class="preview-number">1</div>
+                                        <div class="preview-content">
+                                            <strong>Basic Info</strong>
+                                            <small>Name & Email</small>
+                                        </div>
+                                    </div>
+                                    <div class="preview-step">
+                                        <div class="preview-number">2</div>
+                                        <div class="preview-content">
+                                            <strong>Account Setup</strong>
+                                            <small>Password & Phone</small>
+                                        </div>
+                                    </div>
+                                    <div class="preview-step">
+                                        <div class="preview-number">3</div>
+                                        <div class="preview-content">
+                                            <strong>Preferences</strong>
+                                            <small>Plant interests</small>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <button class="start-btn" onclick="startSignup()">
+                                    <span class="btn-content">
+                                        <span class="btn-text">Start Registration</span>
+                                        <i class="btn-icon fas fa-arrow-right"></i>
+                                    </span>
+                                    <div class="btn-shine"></div>
+                                </button>
+                                
+                                <div class="trust-indicators">
+                                    <div class="trust-item">
+                                        <i class="fas fa-lock"></i>
+                                        <span>100% Secure</span>
+                                    </div>
+                                    <div class="trust-item">
+                                        <i class="fas fa-clock"></i>
+                                        <span>2 minutes</span>
+                                    </div>
+                                    <div class="trust-item">
+                                        <i class="fas fa-gift"></i>
+                                        <span>Instant RM10</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- 🎯 Step 2: Basic Information -->
+                        <div class="signup-step" id="step-basic">
+                            <div class="form-card">
+                                <div class="form-glow-effect"></div>
+                                
+                                <div class="step-header">
+                                    <button class="back-btn" onclick="prevStep()">
+                                        <i class="fas fa-arrow-left"></i>
+                                    </button>
+                                    <div class="step-info">
+                                        <div class="step-counter">Step 1 of 3</div>
+                                        <h3 class="step-title">Basic Information</h3>
+                                    </div>
+                                    <div class="step-dots">
+                                        <div class="dot active"></div>
+                                        <div class="dot"></div>
+                                        <div class="dot"></div>
+                                    </div>
+                                </div>
+                                
+                                <div class="progress-wrapper">
+                                    <div class="progress-bar">
+                                        <div class="progress-fill" style="width: 33%"></div>
+                                    </div>
+                                    <span class="progress-text">Progress: 33%</span>
+                                </div>
+                                
+                                <form class="step-form" id="basicForm">
+                                    <div class="form-row">
+                                        <div class="form-group">
+                                            <label for="firstName">First Name</label>
+                                            <input type="text" id="firstName" name="firstName" required>
+                                            <i class="fas fa-user input-icon"></i>
+                                            <div class="validation-message"></div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="lastName">Last Name</label>
+                                            <input type="text" id="lastName" name="lastName" required>
+                                            <i class="fas fa-user input-icon"></i>
+                                            <div class="validation-message"></div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <label for="email">Email Address</label>
+                                        <input type="email" id="email" name="email" required>
+                                        <i class="fas fa-envelope input-icon"></i>
+                                        <div class="validation-message"></div>
+                                    </div>
+                                    
+                                    <button type="button" class="continue-btn" onclick="nextStep()">
+                                        <span class="btn-content">
+                                            <span class="btn-text">Continue</span>
+                                            <i class="btn-icon fas fa-arrow-right"></i>
+                                        </span>
+                                        <div class="btn-shine"></div>
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                        
+                        <!-- 🎯 Step 3: Account Setup -->
+                        <div class="signup-step" id="step-account">
+                            <div class="form-card">
+                                <div class="form-glow-effect"></div>
+                                
+                                <div class="step-header">
+                                    <button class="back-btn" onclick="prevStep()">
+                                        <i class="fas fa-arrow-left"></i>
+                                    </button>
+                                    <div class="step-info">
+                                        <div class="step-counter">Step 2 of 3</div>
+                                        <h3 class="step-title">Account Setup</h3>
+                                    </div>
+                                    <div class="step-dots">
+                                        <div class="dot completed"></div>
+                                        <div class="dot active"></div>
+                                        <div class="dot"></div>
+                                    </div>
+                                </div>
+                                
+                                <div class="progress-wrapper">
+                                    <div class="progress-bar">
+                                        <div class="progress-fill" style="width: 66%"></div>
+                                    </div>
+                                    <span class="progress-text">Progress: 66%</span>
+                                </div>
+                                
+                                <form class="step-form" id="accountForm">
+                                    <div class="form-group">
+                                        <label for="password">Password</label>
+                                        <input type="password" id="password" name="password" required>
+                                        <i class="fas fa-lock input-icon"></i>
+                                        <button type="button" class="toggle-password" onclick="togglePassword('password')">
+                                            <i class="fas fa-eye"></i>
+                                        </button>
+                                        <div class="password-strength"></div>
+                                        <div class="validation-message"></div>
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <label for="confirmPassword">Confirm Password</label>
+                                        <input type="password" id="confirmPassword" name="confirmPassword" required>
+                                        <i class="fas fa-lock input-icon"></i>
+                                        <button type="button" class="toggle-password" onclick="togglePassword('confirmPassword')">
+                                            <i class="fas fa-eye"></i>
+                                        </button>
+                                        <div class="validation-message"></div>
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <label for="phone">Phone Number (Optional)</label>
+                                        <input type="tel" id="phone" name="phone">
+                                        <i class="fas fa-phone input-icon"></i>
+                                        <div class="validation-message"></div>
+                                    </div>
+                                    
+                                    <button type="button" class="continue-btn" onclick="nextStep()">
+                                        <span class="btn-content">
+                                            <span class="btn-text">Continue</span>
+                                            <i class="btn-icon fas fa-arrow-right"></i>
+                                        </span>
+                                        <div class="btn-shine"></div>
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                        
+                        <!-- 🎯 Step 4: Preferences & Complete -->
+                        <div class="signup-step" id="step-preferences">
+                            <div class="form-card">
+                                <div class="form-glow-effect"></div>
+                                
+                                <div class="step-header">
+                                    <button class="back-btn" onclick="prevStep()">
+                                        <i class="fas fa-arrow-left"></i>
+                                    </button>
+                                    <div class="step-info">
+                                        <div class="step-counter">Step 3 of 3</div>
+                                        <h3 class="step-title">Plant Preferences</h3>
+                                    </div>
+                                    <div class="step-dots">
+                                        <div class="dot completed"></div>
+                                        <div class="dot completed"></div>
+                                        <div class="dot active"></div>
+                                    </div>
+                                </div>
+                                
+                                <div class="progress-wrapper">
+                                    <div class="progress-bar">
+                                        <div class="progress-fill" style="width: 100%"></div>
+                                    </div>
+                                    <span class="progress-text">Almost Done!</span>
+                                </div>
+                                
+                                <form class="step-form" id="preferencesForm">
+                                    <div class="form-group">
+                                        <label>What type of plants interest you most?</label>
+                                        <div class="checkbox-grid">
+                                            <label class="checkbox-item">
+                                                <input type="checkbox" name="interests" value="indoor">
+                                                <span class="checkbox-custom"></span>
+                                                <span class="checkbox-label">
+                                                    <i class="fas fa-home"></i>
+                                                    Indoor Plants
+                                                </span>
+                                            </label>
+                                            <label class="checkbox-item">
+                                                <input type="checkbox" name="interests" value="outdoor">
+                                                <span class="checkbox-custom"></span>
+                                                <span class="checkbox-label">
+                                                    <i class="fas fa-tree"></i>
+                                                    Outdoor Plants
+                                                </span>
+                                            </label>
+                                            <label class="checkbox-item">
+                                                <input type="checkbox" name="interests" value="succulents">
+                                                <span class="checkbox-custom"></span>
+                                                <span class="checkbox-label">
+                                                    <i class="fas fa-seedling"></i>
+                                                    Succulents
+                                                </span>
+                                            </label>
+                                            <label class="checkbox-item">
+                                                <input type="checkbox" name="interests" value="flowers">
+                                                <span class="checkbox-custom"></span>
+                                                <span class="checkbox-label">
+                                                    <i class="fas fa-flower"></i>
+                                                    Flowering Plants
+                                                </span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="terms-group">
+                                        <label class="checkbox-item">
+                                            <input type="checkbox" id="terms" name="terms" required>
+                                            <span class="checkbox-custom"></span>
+                                            <span class="terms-text">
+                                                I agree to the <a href="#" class="terms-link">Terms & Conditions</a> 
+                                                and <a href="#" class="terms-link">Privacy Policy</a>
+                                            </span>
+                                        </label>
+                                        
+                                        <label class="checkbox-item">
+                                            <input type="checkbox" id="newsletter" name="newsletter">
+                                            <span class="checkbox-custom"></span>
+                                            <span class="terms-text">
+                                                Subscribe to our newsletter for plant care tips and exclusive offers
+                                            </span>
+                                        </label>
+                                    </div>
+                                    
+                                    <button type="submit" class="complete-btn" onclick="completeSignup()">
+                                        <span class="btn-content">
+                                            <span class="btn-text">Complete Registration</span>
+                                            <i class="btn-icon fas fa-check"></i>
+                                        </span>
+                                        <div class="btn-shine"></div>
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                        
+                        <!-- 🎯 Step 5: Success -->
+                        <div class="signup-step" id="step-success">
+                            <div class="success-card">
+                                <div class="form-glow-effect"></div>
+                                
+                                <div class="success-content">
+                                    <div class="success-icon">
+                                        <i class="fas fa-check-circle"></i>
+                                    </div>
+                                    <h3 class="success-title">Welcome to Bloomspace!</h3>
+                                    <p class="success-message">
+                                        Congratulations! Your <span class="rm10-mini">RM10</span> discount 
+                                        has been added to your account.
+                                    </p>
+                                    
+                                    <div class="voucher-display">
+                                        <div class="voucher-code">WELCOME10</div>
+                                        <button class="copy-btn" onclick="copyVoucher()">
+                                            <i class="fas fa-copy"></i>
+                                        </button>
+                                    </div>
+                                    
+                                    <div class="success-actions">
+                                        <a href="index.html" class="action-btn primary">
+                                            Start Shopping
+                                            <i class="fas fa-shopping-cart"></i>
+                                        </a>
+                                        <a href="#" class="action-btn secondary">
+                                            Browse Plants
+                                            <i class="fas fa-leaf"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <script src="get10-interactive.js"></script>
+    <script>
+        // Load navigation
+        fetch('navigation.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('navigation-placeholder').innerHTML = data;
+            });
+    </script>
+</body>
+</html>
+

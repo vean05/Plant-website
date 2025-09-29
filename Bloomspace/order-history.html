@@ -1,0 +1,727 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order History - BloomSpace</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .order-history-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #f8f9fa;
+            min-height: 100vh;
+        }
+        
+        .order-history-header {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        
+        .order-history-header h1 {
+            color: #2c5530;
+            margin: 0 0 10px 0;
+            font-size: 2.5rem;
+        }
+        
+        .order-history-header p {
+            color: #666;
+            margin: 0;
+            font-size: 1.1rem;
+        }
+        
+        .order-filters {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+            display: flex;
+            gap: 20px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        
+        .filter-group {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+        
+        .filter-group label {
+            font-weight: 600;
+            color: #2c5530;
+            font-size: 0.9rem;
+        }
+        
+        .filter-group select,
+        .filter-group input {
+            padding: 8px 12px;
+            border: 2px solid #e9ecef;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            transition: border-color 0.3s;
+        }
+        
+        .filter-group select:focus,
+        .filter-group input:focus {
+            outline: none;
+            border-color: #28a745;
+        }
+        
+        .orders-grid {
+            display: grid;
+            gap: 20px;
+        }
+        
+        .order-card {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            overflow: hidden;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .order-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+        }
+        
+        .order-header {
+            background: linear-gradient(135deg, #28a745, #20c997);
+            color: white;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        
+        .order-number {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin: 0;
+        }
+        
+        .order-date {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            margin: 0;
+        }
+        
+        .order-status {
+            background: rgba(255,255,255,0.2);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+        
+        .order-details {
+            padding: 20px;
+        }
+        
+        .order-summary {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .summary-item {
+            text-align: center;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 8px;
+        }
+        
+        .summary-label {
+            font-size: 0.8rem;
+            color: #666;
+            margin-bottom: 5px;
+            text-transform: uppercase;
+            font-weight: 600;
+        }
+        
+        .summary-value {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #2c5530;
+        }
+        
+        .order-items {
+            margin-bottom: 20px;
+        }
+        
+        .order-items h4 {
+            color: #2c5530;
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+        }
+        
+        .item-list {
+            display: grid;
+            gap: 10px;
+        }
+        
+        .item-card {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            border-left: 4px solid #28a745;
+        }
+        
+        .item-image {
+            width: 60px;
+            height: 60px;
+            object-fit: cover;
+            border-radius: 6px;
+        }
+        
+        .item-details {
+            flex: 1;
+        }
+        
+        .item-name {
+            font-weight: 600;
+            color: #2c5530;
+            margin-bottom: 5px;
+        }
+        
+        .item-quantity {
+            color: #666;
+            font-size: 0.9rem;
+        }
+        
+        .item-price {
+            font-weight: 700;
+            color: #28a745;
+            font-size: 1.1rem;
+        }
+        
+        .order-actions {
+            display: flex;
+            gap: 10px;
+            justify-content: flex-end;
+            flex-wrap: wrap;
+        }
+        
+        .btn {
+            padding: 8px 16px;
+            border: none;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
+        }
+        
+        .btn-primary {
+            background: #007bff;
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background: #0056b3;
+        }
+        
+        .btn-secondary {
+            background: #6c757d;
+            color: white;
+        }
+        
+        .btn-secondary:hover {
+            background: #545b62;
+        }
+        
+        .btn-success {
+            background: #28a745;
+            color: white;
+        }
+        
+        .btn-success:hover {
+            background: #1e7e34;
+        }
+        
+        .pagination {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            margin-top: 30px;
+        }
+        
+        .pagination button {
+            padding: 8px 12px;
+            border: 2px solid #e9ecef;
+            background: white;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .pagination button:hover:not(:disabled) {
+            border-color: #28a745;
+            color: #28a745;
+        }
+        
+        .pagination button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        
+        .pagination .current-page {
+            background: #28a745;
+            color: white;
+            border-color: #28a745;
+        }
+        
+        .empty-state {
+            text-align: center;
+            padding: 60px 20px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .empty-state h3 {
+            color: #2c5530;
+            margin-bottom: 15px;
+        }
+        
+        .empty-state p {
+            color: #666;
+            margin-bottom: 30px;
+        }
+        
+        .loading {
+            text-align: center;
+            padding: 40px;
+            color: #666;
+        }
+        
+        .error-message {
+            background: #f8d7da;
+            color: #721c24;
+            padding: 15px;
+            border-radius: 6px;
+            margin: 20px 0;
+            border: 1px solid #f5c6cb;
+        }
+        
+        @media (max-width: 768px) {
+            .order-history-container {
+                padding: 10px;
+            }
+            
+            .order-filters {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            
+            .order-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .order-summary {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .order-actions {
+                justify-content: stretch;
+            }
+            
+            .btn {
+                flex: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation will be loaded here -->
+    <div id="navigation-container"></div>
+    
+    <div class="order-history-container">
+        <div class="order-history-header">
+            <h1>📋 Order History</h1>
+            <p>View all your past orders and track your purchases</p>
+        </div>
+        
+        <div class="order-filters">
+            <div class="filter-group">
+                <label for="status-filter">Status</label>
+                <select id="status-filter">
+                    <option value="">All Orders</option>
+                    <option value="pending">Pending</option>
+                    <option value="processing">Processing</option>
+                    <option value="shipped">Shipped</option>
+                    <option value="delivered">Delivered</option>
+                    <option value="cancelled">Cancelled</option>
+                </select>
+            </div>
+            
+            <div class="filter-group">
+                <label for="payment-filter">Payment Method</label>
+                <select id="payment-filter">
+                    <option value="">All Methods</option>
+                    <option value="card">Credit Card</option>
+                    <option value="bank">Bank Transfer</option>
+                    <option value="ewallet">E-Wallet</option>
+                    <option value="cod">Cash on Delivery</option>
+                </select>
+            </div>
+            
+            <div class="filter-group">
+                <label for="date-from">From Date</label>
+                <input type="date" id="date-from">
+            </div>
+            
+            <div class="filter-group">
+                <label for="date-to">To Date</label>
+                <input type="date" id="date-to">
+            </div>
+            
+            <div class="filter-group">
+                <label for="search">Search Orders</label>
+                <input type="text" id="search" placeholder="Order number...">
+            </div>
+        </div>
+        
+        <div id="loading" class="loading" style="display: none;">
+            <h3>Loading your orders...</h3>
+            <p>Please wait while we fetch your order history.</p>
+        </div>
+        
+        <div id="error-message" class="error-message" style="display: none;"></div>
+        
+        <div id="orders-container">
+            <div class="orders-grid" id="orders-grid"></div>
+            <div id="pagination-container" class="pagination"></div>
+        </div>
+        
+        <div id="empty-state" class="empty-state" style="display: none;">
+            <h3>No Orders Found</h3>
+            <p>You haven't placed any orders yet. Start shopping to see your order history here!</p>
+            <a href="index.html" class="btn btn-success">Start Shopping</a>
+        </div>
+    </div>
+    
+    <!-- Footer will be loaded here -->
+    <div id="footer-container"></div>
+    
+    <script src="navigation-loader.js"></script>
+    <script src="footer-loader.js"></script>
+    <script>
+        class OrderHistory {
+            constructor() {
+                this.currentPage = 1;
+                this.totalPages = 1;
+                this.orders = [];
+                this.filters = {
+                    status: '',
+                    payment: '',
+                    dateFrom: '',
+                    dateTo: '',
+                    search: ''
+                };
+                
+                this.init();
+            }
+            
+            init() {
+                this.setupEventListeners();
+                this.loadOrders();
+            }
+            
+            setupEventListeners() {
+                // Filter event listeners
+                document.getElementById('status-filter').addEventListener('change', (e) => {
+                    this.filters.status = e.target.value;
+                    this.currentPage = 1;
+                    this.loadOrders();
+                });
+                
+                document.getElementById('payment-filter').addEventListener('change', (e) => {
+                    this.filters.payment = e.target.value;
+                    this.currentPage = 1;
+                    this.loadOrders();
+                });
+                
+                document.getElementById('date-from').addEventListener('change', (e) => {
+                    this.filters.dateFrom = e.target.value;
+                    this.currentPage = 1;
+                    this.loadOrders();
+                });
+                
+                document.getElementById('date-to').addEventListener('change', (e) => {
+                    this.filters.dateTo = e.target.value;
+                    this.currentPage = 1;
+                    this.loadOrders();
+                });
+                
+                document.getElementById('search').addEventListener('input', (e) => {
+                    this.filters.search = e.target.value;
+                    this.currentPage = 1;
+                    this.loadOrders();
+                });
+            }
+            
+            async loadOrders() {
+                try {
+                    this.showLoading(true);
+                    this.hideError();
+                    
+                    const params = new URLSearchParams({
+                        page: this.currentPage,
+                        limit: 10,
+                        ...this.filters
+                    });
+                    
+                    const response = await fetch(`api/orders/history-simple.php?${params}`);
+                    const data = await response.json();
+                    
+                    if (data.success) {
+                        this.orders = data.orders;
+                        this.totalPages = data.pagination.total_pages;
+                        this.renderOrders();
+                        this.renderPagination();
+                    } else {
+                        this.showError(data.message || 'Failed to load orders');
+                    }
+                } catch (error) {
+                    console.error('Error loading orders:', error);
+                    this.showError('Failed to load orders. Please try again.');
+                } finally {
+                    this.showLoading(false);
+                }
+            }
+            
+            renderOrders() {
+                const container = document.getElementById('orders-grid');
+                const emptyState = document.getElementById('empty-state');
+                
+                if (this.orders.length === 0) {
+                    container.style.display = 'none';
+                    emptyState.style.display = 'block';
+                    return;
+                }
+                
+                container.style.display = 'grid';
+                emptyState.style.display = 'none';
+                
+                container.innerHTML = this.orders.map(order => this.createOrderCard(order)).join('');
+            }
+            
+            createOrderCard(order) {
+                const orderDate = new Date(order.created_at).toLocaleDateString('en-US', {
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric'
+                });
+                
+                const statusClass = this.getStatusClass(order.status);
+                const paymentMethod = this.getPaymentMethodName(order.payment_method);
+                
+                return `
+                    <div class="order-card">
+                        <div class="order-header">
+                            <div>
+                                <h3 class="order-number">${order.order_number}</h3>
+                                <p class="order-date">${orderDate}</p>
+                            </div>
+                            <div class="order-status ${statusClass}">${order.status || 'pending'}</div>
+                        </div>
+                        
+                        <div class="order-details">
+                            <div class="order-summary">
+                                <div class="summary-item">
+                                    <div class="summary-label">Total Amount</div>
+                                    <div class="summary-value">RM ${parseFloat(order.total_amount).toFixed(2)}</div>
+                                </div>
+                                <div class="summary-item">
+                                    <div class="summary-label">Payment Method</div>
+                                    <div class="summary-value">${paymentMethod}</div>
+                                </div>
+                                <div class="summary-item">
+                                    <div class="summary-label">Items</div>
+                                    <div class="summary-value">${order.items ? order.items.length : 0}</div>
+                                </div>
+                                <div class="summary-item">
+                                    <div class="summary-label">Subtotal</div>
+                                    <div class="summary-value">RM ${parseFloat(order.subtotal).toFixed(2)}</div>
+                                </div>
+                            </div>
+                            
+                            ${this.createOrderItems(order.items || [])}
+                            
+                            <div class="order-actions">
+                                <button class="btn btn-primary" onclick="orderHistory.viewOrder(${order.id})">
+                                    View Details
+                                </button>
+                                <button class="btn btn-secondary" onclick="orderHistory.trackOrder(${order.id})">
+                                    Track Order
+                                </button>
+                                ${order.status === 'delivered' ? `
+                                    <button class="btn btn-success" onclick="orderHistory.reorder(${order.id})">
+                                        Reorder
+                                    </button>
+                                ` : ''}
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }
+            
+            createOrderItems(items) {
+                if (!items || items.length === 0) {
+                    return '<div class="order-items"><h4>Items</h4><p>No items found for this order.</p></div>';
+                }
+                
+                const itemsHtml = items.map(item => `
+                    <div class="item-card">
+                        <img src="${item.image_url || 'image/placeholder.jpg'}" 
+                             alt="${item.product_name}" 
+                             class="item-image"
+                             onerror="this.src='image/placeholder.jpg'">
+                        <div class="item-details">
+                            <div class="item-name">${item.product_name || 'Unknown Product'}</div>
+                            <div class="item-quantity">Quantity: ${item.quantity}</div>
+                        </div>
+                        <div class="item-price">RM ${parseFloat(item.total_price).toFixed(2)}</div>
+                    </div>
+                `).join('');
+                
+                return `
+                    <div class="order-items">
+                        <h4>Items (${items.length})</h4>
+                        <div class="item-list">
+                            ${itemsHtml}
+                        </div>
+                    </div>
+                `;
+            }
+            
+            renderPagination() {
+                const container = document.getElementById('pagination-container');
+                
+                if (this.totalPages <= 1) {
+                    container.innerHTML = '';
+                    return;
+                }
+                
+                let paginationHtml = '';
+                
+                // Previous button
+                paginationHtml += `
+                    <button ${this.currentPage === 1 ? 'disabled' : ''} 
+                            onclick="orderHistory.goToPage(${this.currentPage - 1})">
+                        Previous
+                    </button>
+                `;
+                
+                // Page numbers
+                for (let i = 1; i <= this.totalPages; i++) {
+                    if (i === 1 || i === this.totalPages || (i >= this.currentPage - 2 && i <= this.currentPage + 2)) {
+                        paginationHtml += `
+                            <button class="${i === this.currentPage ? 'current-page' : ''}" 
+                                    onclick="orderHistory.goToPage(${i})">
+                                ${i}
+                            </button>
+                        `;
+                    } else if (i === this.currentPage - 3 || i === this.currentPage + 3) {
+                        paginationHtml += '<span>...</span>';
+                    }
+                }
+                
+                // Next button
+                paginationHtml += `
+                    <button ${this.currentPage === this.totalPages ? 'disabled' : ''} 
+                            onclick="orderHistory.goToPage(${this.currentPage + 1})">
+                        Next
+                    </button>
+                `;
+                
+                container.innerHTML = paginationHtml;
+            }
+            
+            goToPage(page) {
+                if (page >= 1 && page <= this.totalPages) {
+                    this.currentPage = page;
+                    this.loadOrders();
+                }
+            }
+            
+            getStatusClass(status) {
+                const statusClasses = {
+                    'pending': 'status-pending',
+                    'processing': 'status-processing',
+                    'shipped': 'status-shipped',
+                    'delivered': 'status-delivered',
+                    'cancelled': 'status-cancelled'
+                };
+                return statusClasses[status] || 'status-pending';
+            }
+            
+            getPaymentMethodName(method) {
+                const methodNames = {
+                    'card': 'Credit Card',
+                    'bank': 'Bank Transfer',
+                    'ewallet': 'E-Wallet',
+                    'cod': 'Cash on Delivery'
+                };
+                return methodNames[method] || method;
+            }
+            
+            viewOrder(orderId) {
+                // TODO: Implement order details modal or page
+                alert(`View order details for order ID: ${orderId}`);
+            }
+            
+            trackOrder(orderId) {
+                // TODO: Implement order tracking
+                alert(`Track order for order ID: ${orderId}`);
+            }
+            
+            reorder(orderId) {
+                // TODO: Implement reorder functionality
+                alert(`Reorder items from order ID: ${orderId}`);
+            }
+            
+            showLoading(show) {
+                document.getElementById('loading').style.display = show ? 'block' : 'none';
+                document.getElementById('orders-container').style.display = show ? 'none' : 'block';
+            }
+            
+            showError(message) {
+                const errorDiv = document.getElementById('error-message');
+                errorDiv.textContent = message;
+                errorDiv.style.display = 'block';
+            }
+            
+            hideError() {
+                document.getElementById('error-message').style.display = 'none';
+            }
+        }
+        
+        // Initialize order history when page loads
+        let orderHistory;
+        document.addEventListener('DOMContentLoaded', () => {
+            orderHistory = new OrderHistory();
+        });
+    </script>
+</body>
+</html>

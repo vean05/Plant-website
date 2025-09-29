@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New Arrivals - Bloomspace | Latest Plants & Collections</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation will be loaded dynamically -->
+
+    <!-- Main Content -->
+    <main>
+        <!-- Hero Section -->
+        <section class="page-hero">
+            <div class="hero-background"></div>
+            <div class="container">
+                <div class="hero-content-center">
+                    <h1>New Arrivals</h1>
+                    <h2>Discover our latest collection of beautiful plants and accessories</h2>
+                    <div class="hero-pills">
+                        <span class="pill">🌱 Fresh Plants</span>
+                        <span class="pill">🪴 New Pots</span>
+                        <span class="pill">🌿 Care Tools</span>
+                        <span class="pill">💚 Premium Quality</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Filter Bar -->
+        <section class="filter-bar">
+            <div class="container">
+                <div class="filter-bar-content">
+                    <div class="filter-info">
+                        <span class="product-count">Showing <span id="productCount">0</span> products</span>
+                    </div>
+                    <div class="filter-controls">
+                        <div class="sort-dropdown">
+                            <label class="sort-label" for="sortSelect">Sort by:</label>
+                            <select id="sortSelect" class="sort-select-inline" aria-label="Sort products by">
+                                <option value="newest">Newest First</option>
+                                <option value="price-low">Price: Low to High</option>
+                                <option value="price-high">Price: High to Low</option>
+                                <option value="popular">Most Popular</option>
+                                <option value="name">Name: A-Z</option>
+                            </select>
+                        </div>
+                        <button class="filter-toggle-btn" id="filterToggle">
+                            <i class="fas fa-filter"></i>
+                            Filters
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- All Products Section -->
+        <section class="all-products-section">
+            <div class="container">
+                <div class="products-grid" id="allProductsGrid">
+                    <!-- Products will be loaded dynamically -->
+                </div>
+                
+                <!-- Load More Button -->
+                <div class="load-more-container">
+                    <button class="btn-load-more" id="loadMoreBtn">
+                        <i class="fas fa-plus"></i>
+                        Load More Products
+                    </button>
+                </div>
+
+                <!-- Empty State -->
+                <div class="empty-state hidden" id="emptyState">
+                    <i class="fas fa-search"></i>
+                    <h3>No products found</h3>
+                    <p>Try adjusting your filters</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Newsletter Section -->
+        <section class="newsletter">
+            <div class="container">
+                <h2>Stay in the Loop</h2>
+                <p>Get notified about new arrivals and exclusive offers</p>
+                <form class="newsletter-form">
+                    <input type="email" placeholder="Enter your email address" required>
+                    <button type="submit">Subscribe</button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <!-- Filter Sidebar -->
+    <div class="filter-sidebar" id="filterSidebar">
+        <div class="filter-sidebar-overlay" id="filterOverlay"></div>
+        <div class="filter-sidebar-content">
+            <div class="filter-sidebar-header">
+                <h3>Filter Products</h3>
+                <button class="filter-sidebar-close" id="filterClose" aria-label="Close filter panel">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            
+            <div class="filter-sidebar-body">
+                <!-- Category Filter -->
+                <div class="filter-group">
+                    <h4>Category</h4>
+                    <div class="filter-options">
+                        <label class="filter-option">
+                            <input type="checkbox" name="category" value="all" checked>
+                            <span class="checkmark"></span>
+                            <span>All Products</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox" name="category" value="indoor-plants">
+                            <span class="checkmark"></span>
+                            <span>Indoor Plants</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox" name="category" value="outdoor-plants">
+                            <span class="checkmark"></span>
+                            <span>Outdoor Plants</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox" name="category" value="succulents">
+                            <span class="checkmark"></span>
+                            <span>Succulents</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox" name="category" value="pots">
+                            <span class="checkmark"></span>
+                            <span>Pots & Planters</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox" name="category" value="tools">
+                            <span class="checkmark"></span>
+                            <span>Care Tools</span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Price Filter -->
+                <div class="filter-group">
+                    <h4>Price Range</h4>
+                    <div class="filter-options">
+                        <label class="filter-option">
+                            <input type="checkbox" name="price" value="under-25">
+                            <span class="checkmark"></span>
+                            <span>Under RM25</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox" name="price" value="25-50">
+                            <span class="checkmark"></span>
+                            <span>RM25 - RM50</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox" name="price" value="50-100">
+                            <span class="checkmark"></span>
+                            <span>RM50 - RM100</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox" name="price" value="over-100">
+                            <span class="checkmark"></span>
+                            <span>Over RM100</span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Size Filter -->
+                <div class="filter-group">
+                    <h4>Plant Size</h4>
+                    <div class="filter-options">
+                        <label class="filter-option">
+                            <input type="checkbox" name="size" value="small">
+                            <span class="checkmark"></span>
+                            <span>Small (0-30cm)</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox" name="size" value="medium">
+                            <span class="checkmark"></span>
+                            <span>Medium (30-60cm)</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox" name="size" value="large">
+                            <span class="checkmark"></span>
+                            <span>Large (60cm+)</span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="filter-sidebar-footer">
+                <button class="btn-clear-filters" id="clearFilters">Clear All</button>
+                <button class="btn-apply-filters" id="applyFilters">Apply Filters</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer will be loaded dynamically -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Bloomspace</h3>
+                    <p>Your trusted partner in creating beautiful, green spaces that bring life and joy to every home.</p>
+                    <div class="social-links">
+                        <a href="#" aria-label="Follow us on Facebook"><i class="fab fa-facebook"></i></a>
+                        <a href="#" aria-label="Follow us on Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" aria-label="Follow us on Twitter"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="new-arrivals.html">New Arrivals</a></li>
+                        <li><a href="care-tools.html">Care Tools</a></li>
+                        <li><a href="#about">About Us</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Customer Service</h4>
+                    <ul>
+                        <li><a href="#shipping">Shipping Info</a></li>
+                        <li><a href="#returns">Returns</a></li>
+                        <li><a href="#faq">FAQ</a></li>
+                        <li><a href="#contact">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact Info</h4>
+                    <p><i class="fas fa-phone"></i> +60 12-345-6789</p>
+                    <p><i class="fas fa-envelope"></i> hello@bloomspace.my</p>
+                    <p><i class="fas fa-map-marker-alt"></i> Kuala Lumpur, Malaysia</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Bloomspace. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js?v=6.0"></script>
+    <script src="api-integration.js?v=1.0"></script>
+    <script src="universal-api-loader.js?v=1.0"></script>
+    <script src="navigation-loader.js"></script>
+    <script src="footer-loader.js"></script>
+    <script>
+        // Initialize New Arrivals page when DOM is loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('🔄 New Arrivals page DOM loaded');
+            
+            // Wait for all scripts to load
+            setTimeout(() => {
+                console.log('🔄 Initializing New Arrivals page...');
+                
+                // Check if required components are available
+                if (typeof NewArrivalsPage === 'undefined') {
+                    console.error('❌ NewArrivalsPage class not found');
+                    return;
+                }
+                
+                if (typeof window.productCardGenerator === 'undefined') {
+                    console.error('❌ productCardGenerator not found');
+                    return;
+                }
+                
+                // Initialize the page
+                try {
+                    window.newArrivalsPage = new NewArrivalsPage();
+                    console.log('✅ New Arrivals page instance created');
+                    
+                    // Wait for initialization to complete, then load products
+                    const waitForInit = () => {
+                        if (window.newArrivalsPage && window.newArrivalsPage.isInitialized) {
+                            window.newArrivalsPage.loadMoreProducts();
+                            console.log('✅ Initial products loaded from database');
+                        } else {
+                            setTimeout(waitForInit, 100);
+                        }
+                    };
+                    waitForInit();
+                    
+                } catch (error) {
+                    console.error('❌ Error initializing New Arrivals page:', error);
+                }
+            }, 1000);
+        });
+    </script>
+</body>
+</html>

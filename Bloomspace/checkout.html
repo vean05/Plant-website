@@ -1,0 +1,1649 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout - Bloomspace</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css?v=22.0">
+    <style>
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background-color: #fafafa;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+        /* 左边的checkout container */
+        .checkout-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 180px 20px 40px 20px;
+            display: grid;
+            grid-template-columns: 1fr 380px;
+            gap: 20px;
+        }
+
+        .checkout-main {
+            background: white;
+            border-radius: 16px;
+            padding: 40px;
+            box-shadow: 0 4px 24px rgba(0,0,0,0.06);
+            border: 1px solid #f0f0f0;
+        }
+
+         .checkout-sidebar {
+             background: white;
+             border-radius: 16px;
+             padding: 32px;
+             box-shadow: 0 4px 24px rgba(0,0,0,0.06);
+             height: fit-content;
+             position: sticky;
+             top: 100px;
+             border: 1px solid #f0f0f0;
+         }
+
+        .checkout-header {
+            border-bottom: 1px solid #f0f0f0;
+            padding-bottom: 24px;
+            margin-bottom: 40px;
+            background: transparent;
+        }
+
+        .continue-shopping-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 16px;
+            background: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 20px;
+            color: #666;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            text-decoration: none;
+            margin-bottom: 16px;
+        }
+
+        .continue-shopping-btn:hover {
+            background: #e9ecef;
+            color: #333;
+        }
+
+        .continue-shopping-btn i {
+            font-size: 12px;
+        }
+
+        .checkout-header .header-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+            background: transparent;
+        }
+
+        .checkout-header h1 {
+            color: #1a1a1a;
+            font-size: 32px;
+            font-weight: 700;
+            margin: 0;
+            letter-spacing: -0.02em;
+            background: transparent;
+        }
+
+        .checkout-header p {
+            color: #666;
+            margin: 0;
+            font-size: 16px;
+        }
+
+        .login-status {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 16px;
+            background: #f8f9fa;
+            border-radius: 20px;
+            font-size: 14px;
+            color: #666;
+            border: 1px solid #e9ecef;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .login-status:hover {
+            background: #e9ecef;
+        }
+
+        .login-status.logged-in {
+            background: #f8f9fa;
+            color: #566e29;
+            border-color: #e9ecef;
+            cursor: default;
+        }
+
+        .login-status.logged-in:hover {
+            background: #f8f9fa;
+        }
+
+        .login-status i {
+            font-size: 12px;
+        }
+
+        .shipping-section, .payment-section {
+            margin-bottom: 40px;
+        }
+
+        .section-title {
+            font-size: 24px;
+            font-weight: 600;
+            color: #1a1a1a;
+            margin-bottom: 24px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            letter-spacing: -0.01em;
+        }
+
+        .form-group {
+            margin-bottom: 24px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: #1a1a1a;
+            font-size: 14px;
+        }
+
+        .form-group input, .form-group select, .form-group textarea {
+            width: 100%;
+            padding: 16px 20px;
+            border: 1px solid #e0e0e0;
+            border-radius: 12px;
+            font-size: 16px;
+            transition: all 0.2s ease;
+            background: #fafafa;
+            box-sizing: border-box;
+        }
+
+        .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+            outline: none;
+            border-color: #2d5a27;
+            background: white;
+            box-shadow: 0 0 0 3px rgba(45, 90, 39, 0.1);
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .form-row-3 {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 20px;
+        }
+
+        .checkbox-group {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin: 20px 0;
+        }
+
+        .checkbox-group input[type="checkbox"] {
+            width: auto;
+            margin: 0;
+        }
+
+        .payment-methods {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .payment-method {
+            border: 2px solid #e9ecef;
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            min-height: 80px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .payment-method::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: transparent;
+            transition: all 0.3s ease;
+        }
+
+        .payment-method:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+        }
+
+        .payment-method.selected {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+
+        .payment-method.selected::before {
+            height: 4px;
+        }
+
+        /* Credit Card - Blue Theme */
+        .payment-method[data-method="card"] {
+            border-color: #e3f2fd;
+            background: linear-gradient(135deg, #f8f9ff 0%, #ffffff 100%);
+        }
+
+        .payment-method[data-method="card"]:hover {
+            border-color: #2196f3;
+        }
+
+        .payment-method[data-method="card"].selected {
+            border-color: #2196f3;
+            background: linear-gradient(135deg, #e3f2fd 0%, #f8f9ff 100%);
+        }
+
+        .payment-method[data-method="card"]::before {
+            background: #2196f3;
+        }
+
+        .payment-method[data-method="card"] i {
+            color: #2196f3;
+        }
+
+        /* Bank Transfer - Green Theme */
+        .payment-method[data-method="bank"] {
+            border-color: #e8f5e8;
+            background: linear-gradient(135deg, #f0fff4 0%, #ffffff 100%);
+        }
+
+        .payment-method[data-method="bank"]:hover {
+            border-color: #4caf50;
+        }
+
+        .payment-method[data-method="bank"].selected {
+            border-color: #4caf50;
+            background: linear-gradient(135deg, #e8f5e8 0%, #f0fff4 100%);
+        }
+
+        .payment-method[data-method="bank"]::before {
+            background: #4caf50;
+        }
+
+        .payment-method[data-method="bank"] i {
+            color: #4caf50;
+        }
+
+        /* E-Wallet - Purple Theme */
+        .payment-method[data-method="ewallet"] {
+            border-color: #f3e5f5;
+            background: linear-gradient(135deg, #faf5ff 0%, #ffffff 100%);
+        }
+
+        .payment-method[data-method="ewallet"]:hover {
+            border-color: #9c27b0;
+        }
+
+        .payment-method[data-method="ewallet"].selected {
+            border-color: #9c27b0;
+            background: linear-gradient(135deg, #f3e5f5 0%, #faf5ff 100%);
+        }
+
+        .payment-method[data-method="ewallet"]::before {
+            background: #9c27b0;
+        }
+
+        .payment-method[data-method="ewallet"] i {
+            color: #9c27b0;
+        }
+
+        /* Cash on Delivery - Orange Theme */
+        .payment-method[data-method="cod"] {
+            border-color: #fff3e0;
+            background: linear-gradient(135deg, #fff8f0 0%, #ffffff 100%);
+        }
+
+        .payment-method[data-method="cod"]:hover {
+            border-color: #ff9800;
+        }
+
+        .payment-method[data-method="cod"].selected {
+            border-color: #ff9800;
+            background: linear-gradient(135deg, #fff3e0 0%, #fff8f0 100%);
+        }
+
+        .payment-method[data-method="cod"]::before {
+            background: #ff9800;
+        }
+
+        .payment-method[data-method="cod"] i {
+            color: #ff9800;
+        }
+
+        .payment-method i {
+            font-size: 24px;
+            margin-bottom: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .payment-method span {
+            display: block;
+            font-size: 12px;
+            color: #666;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .payment-method.selected span {
+            color: #333;
+            font-weight: 600;
+        }
+
+        /* Payment Details Forms */
+        .payment-details {
+            margin-top: 30px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 12px;
+            border: 1px solid #e9ecef;
+            transition: all 0.3s ease;
+        }
+
+        .payment-form {
+            display: none;
+        }
+
+        .payment-form.active {
+            display: block;
+        }
+
+        .payment-form h4 {
+            margin: 0 0 20px 0;
+            color: #1a1a1a;
+            font-size: 18px;
+            font-weight: 600;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #e9ecef;
+            position: relative;
+        }
+
+        .payment-form h4::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            transition: width 0.3s ease;
+        }
+
+        /* Credit Card Form Theme */
+        #cardDetails h4::after {
+            background: #2196f3;
+        }
+
+        #cardDetails.active h4::after {
+            width: 100px;
+        }
+
+        /* Bank Transfer Form Theme */
+        #bankDetails h4::after {
+            background: #4caf50;
+        }
+
+        #bankDetails.active h4::after {
+            width: 100px;
+        }
+
+        /* E-Wallet Form Theme */
+        #ewalletDetails h4::after {
+            background: #9c27b0;
+        }
+
+        #ewalletDetails.active h4::after {
+            width: 100px;
+        }
+
+        /* COD Form Theme */
+        #codDetails h4::after {
+            background: #ff9800;
+        }
+
+        #codDetails.active h4::after {
+            width: 100px;
+        }
+
+        .bank-info {
+            background: linear-gradient(135deg, #f0fff4 0%, #ffffff 100%);
+            padding: 20px;
+            border-radius: 8px;
+            border: 1px solid #4caf50;
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        .bank-info::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #4caf50, #66bb6a);
+            border-radius: 8px 8px 0 0;
+        }
+
+        .bank-info p {
+            margin: 8px 0;
+            font-size: 14px;
+        }
+
+        .bank-info p strong {
+            color: #2e7d32;
+        }
+
+        .cod-info {
+            background: linear-gradient(135deg, #fff8f0 0%, #ffffff 100%);
+            padding: 20px;
+            border-radius: 8px;
+            border: 1px solid #ff9800;
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        .cod-info::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #ff9800, #ffb74d);
+            border-radius: 8px 8px 0 0;
+        }
+
+        .cod-info p {
+            margin: 8px 0;
+            font-size: 14px;
+        }
+
+        .cod-info p strong {
+            color: #e65100;
+        }
+
+        .cod-info i {
+            color: #ff9800;
+            margin-right: 8px;
+        }
+
+        /* Card number formatting */
+        #cardNumber {
+            letter-spacing: 2px;
+        }
+
+        /* Form input styling with color themes */
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(33, 150, 243, 0.1);
+        }
+
+        /* Credit Card Form Inputs */
+        #cardDetails .form-group input:focus {
+            border-color: #2196f3;
+            box-shadow: 0 0 0 3px rgba(33, 150, 243, 0.1);
+        }
+
+        /* Bank Transfer Form Inputs */
+        #bankDetails .form-group input:focus,
+        #bankDetails .form-group select:focus {
+            border-color: #4caf50;
+            box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.1);
+        }
+
+        /* E-Wallet Form Inputs */
+        #ewalletDetails .form-group input:focus,
+        #ewalletDetails .form-group select:focus {
+            border-color: #9c27b0;
+            box-shadow: 0 0 0 3px rgba(156, 39, 176, 0.1);
+        }
+
+        /* COD Form Inputs */
+        #codDetails .form-group input:focus,
+        #codDetails .form-group textarea:focus {
+            border-color: #ff9800;
+            box-shadow: 0 0 0 3px rgba(255, 152, 0, 0.1);
+        }
+
+        /* File input styling */
+        input[type="file"] {
+            padding: 12px;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            background: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        input[type="file"]:hover {
+            border-color: #4caf50;
+            background: #f0fff4;
+        }
+
+        /* Payment method icons with enhanced styling */
+        .payment-method i {
+            font-size: 28px;
+            margin-bottom: 8px;
+            transition: all 0.3s ease;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
+        }
+
+        .payment-method:hover i {
+            transform: scale(1.1);
+        }
+
+        .payment-method.selected i {
+            transform: scale(1.15);
+            filter: drop-shadow(0 4px 8px rgba(0,0,0,0.2));
+        }
+
+         /* 右边的Order Summary */
+         .order-summary {
+             border-bottom: 1px solid #e9ecef;
+             padding-bottom: 20px;
+             margin-bottom: 20px;
+             max-height: 400px;
+             overflow-y: auto;
+         }
+         /* 右边的order item */
+        .order-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 16px 0;
+            border-bottom: 1px solid #f0f0f0;
+            transition: background-color 0.2s ease;
+        }
+
+        .order-item:hover {
+            background-color: #f8f9fa;
+            border-radius: 8px;
+            padding: 12px 8px;
+            margin: 0 -8px;
+        }
+
+        .order-item:last-child {
+            border-bottom: none;
+        }
+
+        .order-item img {
+            width: 64px;
+            height: 64px;
+            object-fit: cover;
+            border-radius: 12px;
+            border: 1px solid #f0f0f0;
+        }
+
+        .order-item-details {
+            flex: 1;
+        }
+
+        .order-item-details h4 {
+            margin: 0 0 6px 0;
+            font-size: 15px;
+            color: #1a1a1a;
+            font-weight: 500;
+        }
+
+        .order-item-details p {
+            margin: 0;
+            font-size: 13px;
+            color: #666;
+        }
+
+        .order-item-price {
+            font-weight: 600;
+            color: #1a1a1a;
+            font-size: 15px;
+        }
+
+        .order-totals {
+            margin-top: 24px;
+            background: #fafafa;
+            padding: 24px;
+            border-radius: 16px;
+            border: 1px solid #f0f0f0;
+        }
+
+        .total-line {
+            display: flex;
+            justify-content: space-between;
+            padding: 12px 0;
+            border-bottom: 1px solid #f0f0f0;
+            font-size: 15px;
+        }
+        
+        .total-line.shipping-line {
+            padding: 20px 0 12px 0;
+        }
+
+        .total-line.final {
+            font-weight: 700;
+            font-size: 20px;
+            color: #1a1a1a;
+            border-top: 2px solid #566e29;
+            margin-top: 16px;
+            padding-top: 16px;
+        }
+
+        .discount-line {
+            color: #566e29;
+            font-weight: 600;
+        }
+
+        .discount-line i {
+            margin-right: 5px;
+        }
+
+        .checkout-btn {
+            width: 100%;
+            background: #566e29;
+            color: white;
+            border: none;
+            padding: 20px 24px;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            margin-top: 24px;
+            letter-spacing: 0.01em;
+        }
+
+        .checkout-btn:hover {
+            background: #1e3d1a;
+            transform: translateY(-1px);
+            box-shadow: 0 8px 24px rgba(45, 90, 39, 0.2);
+        }
+
+        .security-badges {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 20px;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            border: 1px solid #e9ecef;
+        }
+
+        .security-badge {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 12px;
+            color: #666;
+        }
+
+        .security-badge i {
+            color: #566e29;
+        }
+
+        .shipping-notice {
+            background: #e7f3ff;
+            border: 1px solid #b3d9ff;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 20px;
+            font-size: 14px;
+            color: #0066cc;
+        }
+
+        .shipping-notice i {
+            margin-right: 8px;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .checkout-container {
+                grid-template-columns: 1fr;
+                gap: 20px;
+                padding: 10px;
+            }
+
+            .checkout-sidebar {
+                position: static;
+                margin-top: 20px;
+            }
+
+            .form-row, .form-row-3 {
+                grid-template-columns: 1fr;
+            }
+
+            .payment-methods {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .security-badges {
+                flex-direction: column;
+                gap: 10px;
+            }
+        }
+
+        /* Voucher Section */
+        .voucher-section {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            border: 1px solid #dee2e6;
+            border-radius: 16px;
+            padding: 24px;
+            margin: 24px 0;
+        }
+
+        .voucher-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .voucher-header h4 {
+            margin: 0;
+            color: #1a1a1a;
+            font-size: 18px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        /* 优惠券badge */
+        .voucher-badge {
+            background: #d2d446;
+            color: white;
+            padding: 6px 12px;
+            border-radius: 8px;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .voucher-code-display {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 10px;
+            padding: 12px;
+            background: white;
+            border-radius: 8px;
+            border: 1px solid #ffd700;
+        }
+
+        .voucher-code {
+            font-family: 'Courier New', monospace;
+            font-weight: 600;
+            font-size: 16px;
+            color: #566e29;
+            letter-spacing: 1px;
+        }
+
+        .copy-voucher-btn {
+            background: #566e29;
+            color: white;
+            border: none;
+            padding: 8px 12px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 12px;
+            transition: all 0.3s ease;
+        }
+
+        .copy-voucher-btn:hover {
+            background: #566e29;
+        }
+
+        .apply-voucher-btn {
+            background: #566e29;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 12px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.2s ease;
+            font-size: 14px;
+        }
+
+        .apply-voucher-btn:hover {
+            background: #566e29;
+            transform: translateY(-1px);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .checkout-container {
+                grid-template-columns: 1fr;
+                gap: 30px;
+                padding: 200px 15px 20px 15px;
+            }
+            
+            .checkout-sidebar {
+                position: static;
+                order: 2;
+            }
+            
+            .checkout-main {
+                order: 1;
+            }
+            
+            .form-row {
+                grid-template-columns: 1fr;
+                gap: 16px;
+            }
+            
+            .form-row-3 {
+                grid-template-columns: 1fr;
+                gap: 16px;
+            }
+            
+            .checkout-main {
+                padding: 24px;
+            }
+            
+            .checkout-sidebar {
+                padding: 24px;
+            }
+            
+            .checkout-header .header-top {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 12px;
+            }
+            
+            .continue-shopping-btn {
+                align-self: flex-start;
+            }
+            
+            .login-status {
+                align-self: flex-end;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="checkout-container">
+        <div class="checkout-main">
+            <div class="checkout-header">
+                <button class="continue-shopping-btn" onclick="window.location.href='index.html'">
+                    <i class="fas fa-arrow-left"></i>
+                    Continue Shopping
+                </button>
+                <div class="header-top">
+                    <h1>Checkout</h1>
+                    <div class="login-status" id="loginStatus">
+                        <i class="fas fa-user"></i>
+                        <span id="userStatusText">Not logged in</span>
+                    </div>
+                </div>
+                <p>Complete your order to get your plants delivered</p>
+            </div>
+
+            <div class="shipping-notice">
+                <i class="fas fa-truck"></i>
+                <strong>Free Shipping</strong> above RM150 to all Semenanjung Malaysia. Self pickup available.
+            </div>
+
+            <div class="shipping-section">
+                <h2 class="section-title">
+                    <i class="fas fa-shipping-fast"></i>
+                    Shipping Information
+                </h2>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="firstName">First Name *</label>
+                        <input type="text" id="firstName" name="firstName" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="lastName">Last Name *</label>
+                        <input type="text" id="lastName" name="lastName" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email Address *</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="phone">Phone Number *</label>
+                    <input type="tel" id="phone" name="phone" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="address">Address *</label>
+                    <textarea id="address" name="address" rows="3" required></textarea>
+                </div>
+
+                <div class="form-row-3">
+                    <div class="form-group">
+                        <label for="city">City *</label>
+                        <input type="text" id="city" name="city" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="state">State *</label>
+                        <select id="state" name="state" required>
+                            <option value="">Select State</option>
+                            <option value="Kuala Lumpur">Kuala Lumpur</option>
+                            <option value="Selangor">Selangor</option>
+                            <option value="Penang">Penang</option>
+                            <option value="Johor">Johor</option>
+                            <option value="Perak">Perak</option>
+                            <option value="Kedah">Kedah</option>
+                            <option value="Kelantan">Kelantan</option>
+                            <option value="Terengganu">Terengganu</option>
+                            <option value="Pahang">Pahang</option>
+                            <option value="Negeri Sembilan">Negeri Sembilan</option>
+                            <option value="Melaka">Melaka</option>
+                            <option value="Sarawak">Sarawak</option>
+                            <option value="Perlis">Perlis</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="postcode">Postcode *</label>
+                        <input type="text" id="postcode" name="postcode" required>
+                    </div>
+                </div>
+
+                <div class="checkbox-group">
+                    <input type="checkbox" id="saveAddress" name="saveAddress">
+                    <label for="saveAddress">Save this address for future orders</label>
+                </div>
+            </div>
+
+            <div class="payment-section">
+                <h2 class="section-title">
+                    <i class="fas fa-credit-card"></i>
+                    Payment Method
+                </h2>
+
+                <div class="payment-methods">
+                    <div class="payment-method selected" data-method="card">
+                        <i class="fas fa-credit-card"></i>
+                        <span>Credit Card</span>
+                    </div>
+                    <div class="payment-method" data-method="bank">
+                        <i class="fas fa-university"></i>
+                        <span>Bank Transfer</span>
+                    </div>
+                    <div class="payment-method" data-method="ewallet">
+                        <i class="fas fa-mobile-alt"></i>
+                        <span>E-Wallet</span>
+                    </div>
+                    <div class="payment-method" data-method="cod">
+                        <i class="fas fa-money-bill-wave"></i>
+                        <span>Cash on Delivery</span>
+                    </div>
+                </div>
+
+                <!-- Payment Details Forms -->
+                <div id="paymentDetails" class="payment-details">
+                    <!-- Credit Card Details -->
+                    <div id="cardDetails" class="payment-form active">
+                        <h4>Credit Card Information</h4>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="cardNumber">Card Number *</label>
+                                <input type="text" id="cardNumber" name="cardNumber" placeholder="1234 5678 9012 3456" maxlength="19">
+                            </div>
+                            <div class="form-group">
+                                <label for="cardName">Name on Card *</label>
+                                <input type="text" id="cardName" name="cardName" placeholder="John Doe">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="expiryDate">Expiry Date *</label>
+                                <input type="text" id="expiryDate" name="expiryDate" placeholder="MM/YY" maxlength="5">
+                            </div>
+                            <div class="form-group">
+                                <label for="cvv">CVV *</label>
+                                <input type="text" id="cvv" name="cvv" placeholder="123" maxlength="4">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Bank Transfer Details -->
+                    <div id="bankDetails" class="payment-form">
+                        <h4>Bank Transfer Information</h4>
+                        <div class="bank-info">
+                            <p><strong>Account Name:</strong> Bloomspace Sdn Bhd</p>
+                            <p><strong>Bank:</strong> Maybank</p>
+                            <p><strong>Account Number:</strong> 1234567890</p>
+                            <p><strong>Reference:</strong> <span id="bankReference">BS-<span id="orderRef"></span></span></p>
+                        </div>
+                        <div class="form-group">
+                            <label for="bankTransferProof">Upload Transfer Receipt (Optional)</label>
+                            <input type="file" id="bankTransferProof" name="bankTransferProof" accept="image/*,.pdf">
+                        </div>
+                    </div>
+
+                    <!-- E-Wallet Details -->
+                    <div id="ewalletDetails" class="payment-form">
+                        <h4>E-Wallet Information</h4>
+                        <div class="form-group">
+                            <label for="ewalletType">E-Wallet Type *</label>
+                            <select id="ewalletType" name="ewalletType">
+                                <option value="">Select E-Wallet</option>
+                                <option value="grabpay">GrabPay</option>
+                                <option value="tng">Touch 'n Go eWallet</option>
+                                <option value="boost">Boost</option>
+                                <option value="fave">Fave</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="ewalletNumber">E-Wallet Number *</label>
+                            <input type="text" id="ewalletNumber" name="ewalletNumber" placeholder="Enter your e-wallet number">
+                        </div>
+                    </div>
+
+                    <!-- Cash on Delivery Details -->
+                    <div id="codDetails" class="payment-form">
+                        <h4>Cash on Delivery Information</h4>
+                        <div class="cod-info">
+                            <p><i class="fas fa-info-circle"></i> You will pay with cash when your order is delivered.</p>
+                            <p><strong>Delivery Fee:</strong> RM 5.00 (included in total)</p>
+                            <p><strong>Payment Amount:</strong> <span id="codAmount">RM 0.00</span></p>
+                        </div>
+                        <div class="form-group">
+                            <label for="codNotes">Special Instructions (Optional)</label>
+                            <textarea id="codNotes" name="codNotes" rows="3" placeholder="Any special delivery instructions..."></textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="checkbox-group">
+                    <input type="checkbox" id="terms" name="terms" required>
+                    <label for="terms">I agree to the <a href="#" style="color: #2d5a27;">Terms and Conditions</a> and <a href="#" style="color: #2d5a27;">Privacy Policy</a></label>
+                </div>
+            </div>
+        </div>
+
+        <div class="checkout-sidebar">
+            <h2 class="section-title">
+                <i class="fas fa-shopping-cart"></i>
+                Order Summary
+            </h2>
+
+            <div class="order-summary" id="orderSummary">
+                <!-- Order items will be populated by JavaScript -->
+            </div>
+
+            <!-- Voucher Section for Registered Users -->
+            <div class="voucher-section" id="voucherSection" style="display: none;">
+                <div class="voucher-header">
+                    <h4><i class="fas fa-gift"></i> Welcome Voucher</h4>
+                    <span class="voucher-badge">New User</span>
+                </div>
+                <div class="voucher-content">
+                    <div class="voucher-code-display">
+                        <button class="apply-voucher-btn" onclick="applyVoucher()">
+                            <i class="fas fa-ticket-alt"></i> Apply Voucher
+                        </button>
+                    </div>
+                    <p class="voucher-description">Get RM10 off your first order!</p>
+                    
+                </div>
+            </div>
+
+            <div class="order-totals">
+                <div class="total-line">
+                    <span>Subtotal</span>
+                    <span id="subtotal">RM0.00</span>
+                </div>
+                <div class="total-line shipping-line">
+                    <span>Shipping <small id="shippingNote" style="color: #666; font-size: 12px; display: block; margin-top: 8px;"></small></span>
+                    <span id="shipping">Free</span>
+                </div>
+                <div class="total-line discount" id="voucherDiscount" style="display: none;">
+                    <span><i class="fas fa-ticket-alt"></i> Voucher Discount</span>
+                    <span>-RM10.00</span>
+                </div>
+                <div class="total-line final">
+                    <span>Total</span>
+                    <span id="total">RM0.00</span>
+                </div>
+            </div>
+
+            <button class="checkout-btn" onclick="processCheckout()">
+                <i class="fas fa-lock"></i>
+                Complete Order
+            </button>
+
+            <div class="security-badges">
+                <div class="security-badge">
+                    <i class="fas fa-shield-alt"></i>
+                    <span>Secure Payment</span>
+                </div>
+                <div class="security-badge">
+                    <i class="fas fa-truck"></i>
+                    <span>Free Delivery</span>
+                </div>
+                <div class="security-badge">
+                    <i class="fas fa-undo"></i>
+                    <span>14-Day Return</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Load cart data from localStorage
+        function loadCartData() {
+            const cartData = localStorage.getItem('bloomspaceCart');
+            if (cartData) {
+                return JSON.parse(cartData);
+            }
+            return { items: [], total: 0 };
+        }
+
+        // Display order summary
+        function displayOrderSummary() {
+            const cartData = loadCartData();
+            const orderSummary = document.getElementById('orderSummary');
+            const subtotalEl = document.getElementById('subtotal');
+            const totalEl = document.getElementById('total');
+            const voucherDiscountEl = document.getElementById('voucherDiscount');
+
+            if (cartData.items.length === 0) {
+                orderSummary.innerHTML = '<p>Your cart is empty</p>';
+                return;
+            }
+
+            // Display items
+            orderSummary.innerHTML = cartData.items.map(item => `
+                <div class="order-item">
+                    <img src="${item.image}" alt="${item.name}">
+                    <div class="order-item-details">
+                        <h4>${item.name}</h4>
+                        <p>Size: ${item.size} | Qty: ${item.quantity}</p>
+                    </div>
+                    <div class="order-item-price">RM${(item.price * item.quantity).toFixed(2)}</div>
+                </div>
+            `).join('');
+
+            // Calculate totals
+            const subtotal = cartData.items.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            const shipping = subtotal >= 150 ? 0 : 15;
+            const discount = voucherApplied ? voucherDiscount : 0;
+            const total = subtotal + shipping - discount;
+
+            subtotalEl.textContent = `RM${subtotal.toFixed(2)}`;
+            
+            // Update shipping display
+            const shippingEl = document.getElementById('shipping');
+            const shippingNoteEl = document.getElementById('shippingNote');
+            if (shipping === 0) {
+                shippingEl.textContent = 'Free';
+                shippingEl.style.color = '#28a745';
+                shippingEl.style.fontWeight = '600';
+                shippingNoteEl.textContent = '(orders over RM150)';
+                shippingNoteEl.style.color = '#28a745';
+            } else {
+                shippingEl.textContent = `RM${shipping.toFixed(2)}`;
+                shippingEl.style.color = '#dc3545';
+                shippingEl.style.fontWeight = '600';
+                shippingNoteEl.textContent = '(add RM' + (150 - subtotal).toFixed(2) + ' more for free shipping)';
+                shippingNoteEl.style.color = '#dc3545';
+            }
+            
+            totalEl.textContent = `RM${total.toFixed(2)}`;
+
+            // Show voucher discount if applicable
+            if (voucherApplied && discount > 0) {
+                voucherDiscountEl.style.display = 'flex';
+            } else {
+                voucherDiscountEl.style.display = 'none';
+            }
+        }
+
+        // Update order summary (called when voucher is applied)
+        function updateOrderSummary() {
+            displayOrderSummary();
+        }
+
+        // Process checkout
+        async function processCheckout() {
+            // Validate form
+            const requiredFields = ['firstName', 'lastName', 'email', 'phone', 'address', 'city', 'state', 'postcode'];
+            let isValid = true;
+
+            requiredFields.forEach(fieldId => {
+                const field = document.getElementById(fieldId);
+                if (!field.value.trim()) {
+                    field.style.borderColor = '#dc3545';
+                    isValid = false;
+                } else {
+                    field.style.borderColor = '#e9ecef';
+                }
+            });
+
+            if (!document.getElementById('terms').checked) {
+                alert('Please accept the terms and conditions');
+                return;
+            }
+
+            if (!isValid) {
+                alert('Please fill in all required fields');
+                return;
+            }
+
+            // Get selected payment method
+            const selectedPaymentMethod = document.querySelector('.payment-method.selected');
+            if (!selectedPaymentMethod) {
+                alert('Please select a payment method');
+                return;
+            }
+            
+            const paymentMethod = selectedPaymentMethod.dataset.method;
+            console.log('Selected payment method:', paymentMethod);
+            
+            // Validate payment form
+            if (!validatePaymentForm(paymentMethod)) {
+                return;
+            }
+            
+            // Get form data
+            const formData = {
+                firstName: document.getElementById('firstName').value,
+                lastName: document.getElementById('lastName').value,
+                email: document.getElementById('email').value,
+                phone: document.getElementById('phone').value,
+                address: document.getElementById('address').value,
+                city: document.getElementById('city').value,
+                state: document.getElementById('state').value,
+                postcode: document.getElementById('postcode').value,
+                paymentMethod: paymentMethod
+            };
+            
+            // Add payment-specific data
+            if (paymentMethod === 'card') {
+                formData.paymentDetails = {
+                    cardNumber: document.getElementById('cardNumber').value,
+                    cardName: document.getElementById('cardName').value,
+                    expiryDate: document.getElementById('expiryDate').value,
+                    cvv: document.getElementById('cvv').value
+                };
+            } else if (paymentMethod === 'ewallet') {
+                formData.paymentDetails = {
+                    ewalletType: document.getElementById('ewalletType').value,
+                    ewalletNumber: document.getElementById('ewalletNumber').value
+                };
+            } else if (paymentMethod === 'bank') {
+                formData.paymentDetails = {
+                    bankReference: document.getElementById('orderRef').textContent,
+                    transferProof: document.getElementById('bankTransferProof').files[0] ? 'uploaded' : null
+                };
+            } else if (paymentMethod === 'cod') {
+                formData.paymentDetails = {
+                    codNotes: document.getElementById('codNotes').value,
+                    codAmount: document.getElementById('codAmount').textContent
+                };
+            }
+            
+            console.log('Form data collected:', formData);
+
+            // Get cart data
+            const cartData = loadCartData();
+            if (cartData.items.length === 0) {
+                alert('Your cart is empty');
+                return;
+            }
+
+            // Prepare order data
+            const orderData = {
+                shipping_address: {
+                    first_name: formData.firstName,
+                    last_name: formData.lastName,
+                    email: formData.email,
+                    phone: formData.phone,
+                    address: formData.address,
+                    city: formData.city,
+                    state: formData.state,
+                    postcode: formData.postcode
+                },
+                billing_address: {
+                    first_name: formData.firstName,
+                    last_name: formData.lastName,
+                    email: formData.email,
+                    phone: formData.phone,
+                    address: formData.address,
+                    city: formData.city,
+                    state: formData.state,
+                    postcode: formData.postcode
+                },
+                payment_method: formData.paymentMethod,
+                payment_details: formData.paymentDetails,
+                notes: null,
+                coupon_code: voucherApplied ? 'WELCOME10' : null,
+                cart_items: cartData.items.map(item => ({
+                    id: item.id,
+                    quantity: item.quantity,
+                    price: item.price
+                }))
+            };
+
+            // Show loading state
+            const checkoutBtn = document.querySelector('.checkout-btn');
+            checkoutBtn.disabled = true;
+            checkoutBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processing...';
+
+            try {
+                // Call order creation API
+                const response = await fetch('api/orders/create.php', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(orderData)
+                });
+
+                const data = await response.json();
+
+                if (response.ok && data.success) {
+                    // Order created successfully
+                    alert(`Order placed successfully! Order Number: ${data.data.order_number}`);
+                    
+                    // Clear cart
+                    localStorage.removeItem('bloomspaceCart');
+                    localStorage.removeItem('cart');
+                    
+                    // Redirect to home
+                    window.location.href = 'index.html';
+                } else {
+                    // Order creation failed
+                    console.error('Order creation failed:', data.message);
+                    alert('Order creation failed: ' + (data.message || 'Unknown error'));
+                    
+                    // Reset button
+                    checkoutBtn.disabled = false;
+                    checkoutBtn.innerHTML = '<i class="fas fa-lock"></i> Complete Order';
+                }
+            } catch (error) {
+                console.error('Order creation error:', error);
+                alert('Order creation failed: ' + error.message);
+                
+                // Reset button
+                checkoutBtn.disabled = false;
+                checkoutBtn.innerHTML = '<i class="fas fa-lock"></i> Complete Order';
+            }
+        }
+
+        // Voucher functionality
+        let voucherApplied = false;
+        const voucherDiscount = 10;
+
+        function checkUserRegistration() {
+            const isRegistered = localStorage.getItem('bloomspaceUserRegistered') === 'true';
+            const userEmail = localStorage.getItem('bloomspaceUserEmail');
+            
+            if (isRegistered && userEmail) {
+                document.getElementById('voucherSection').style.display = 'block';
+            }
+        }
+
+        function copyVoucherCode() {
+            navigator.clipboard.writeText('WELCOME10').then(() => {
+                showMessage('Voucher code copied!', 'success');
+            }).catch(() => {
+                showMessage('Failed to copy voucher code', 'error');
+            });
+        }
+
+        function applyVoucher() {
+            if (voucherApplied) {
+                showMessage('Voucher already applied!', 'error');
+                return;
+            }
+
+            const cartData = loadCartData();
+            if (cartData.items.length === 0) {
+                showMessage('Add items to cart first!', 'error');
+                return;
+            }
+
+            voucherApplied = true;
+            updateOrderSummary();
+            
+            // Update apply button
+            const applyBtn = document.querySelector('.apply-voucher-btn');
+            applyBtn.innerHTML = '<i class="fas fa-check"></i> Applied';
+            applyBtn.disabled = true;
+            applyBtn.style.background = '#566e29';
+            
+            showMessage('Voucher applied! RM10 discount added.', 'success');
+        }
+
+        function showMessage(message, type) {
+            // Create a simple message display
+            const messageDiv = document.createElement('div');
+            messageDiv.style.cssText = `
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                padding: 15px 20px;
+                border-radius: 8px;
+                color: white;
+                font-weight: 500;
+                z-index: 1000;
+                background: ${type === 'success' ? '#566e29' : '#dc3545'};
+            `;
+            messageDiv.textContent = message;
+            document.body.appendChild(messageDiv);
+            
+            setTimeout(() => {
+                document.body.removeChild(messageDiv);
+            }, 3000);
+        }
+
+        // Check login status
+        function checkLoginStatus() {
+            const loginStatus = document.getElementById('loginStatus');
+            const userStatusText = document.getElementById('userStatusText');
+            const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true' || localStorage.getItem('bloomspaceUserRegistered') === 'true';
+            const userEmail = localStorage.getItem('userEmail') || localStorage.getItem('bloomspaceUserEmail');
+            
+            if (isLoggedIn && userEmail) {
+                loginStatus.classList.add('logged-in');
+                userStatusText.textContent = `Logged in as ${userEmail}`;
+                loginStatus.onclick = null; // 移除点击事件
+            } else {
+                loginStatus.classList.remove('logged-in');
+                userStatusText.textContent = 'Login';
+                loginStatus.onclick = function() {
+                    window.location.href = 'login.html';
+                };
+            }
+        }
+
+        // Show payment form based on selected method
+        function showPaymentForm(method) {
+            // Hide all payment forms
+            document.querySelectorAll('.payment-form').forEach(form => {
+                form.classList.remove('active');
+            });
+            
+            // Show selected payment form
+            const formId = method + 'Details';
+            const form = document.getElementById(formId);
+            if (form) {
+                form.classList.add('active');
+            }
+            
+            // Update COD amount if COD is selected
+            if (method === 'cod') {
+                updateCodAmount();
+            }
+            
+            // Generate bank reference if bank transfer is selected
+            if (method === 'bank') {
+                generateBankReference();
+            }
+        }
+        
+        // Update COD amount
+        function updateCodAmount() {
+            const cartData = loadCartData();
+            const subtotal = cartData.items.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            const shipping = subtotal >= 150 ? 0 : 15;
+            const codFee = 5; // COD fee
+            const total = subtotal + shipping + codFee;
+            
+            const codAmountEl = document.getElementById('codAmount');
+            if (codAmountEl) {
+                codAmountEl.textContent = `RM ${total.toFixed(2)}`;
+            }
+        }
+        
+        // Generate bank reference
+        function generateBankReference() {
+            const orderRef = 'BS' + Date.now().toString().slice(-6);
+            const orderRefEl = document.getElementById('orderRef');
+            if (orderRefEl) {
+                orderRefEl.textContent = orderRef;
+            }
+        }
+        
+        // Validate payment form based on selected method
+        function validatePaymentForm(paymentMethod) {
+            switch (paymentMethod) {
+                case 'card':
+                    const cardNumber = document.getElementById('cardNumber').value.trim();
+                    const cardName = document.getElementById('cardName').value.trim();
+                    const expiryDate = document.getElementById('expiryDate').value.trim();
+                    const cvv = document.getElementById('cvv').value.trim();
+                    
+                    if (!cardNumber || !cardName || !expiryDate || !cvv) {
+                        alert('Please fill in all credit card details');
+                        return false;
+                    }
+                    
+                    if (cardNumber.replace(/\s/g, '').length < 16) {
+                        alert('Please enter a valid card number');
+                        return false;
+                    }
+                    
+                    if (!/^\d{2}\/\d{2}$/.test(expiryDate)) {
+                        alert('Please enter expiry date in MM/YY format');
+                        return false;
+                    }
+                    
+                    if (cvv.length < 3) {
+                        alert('Please enter a valid CVV');
+                        return false;
+                    }
+                    break;
+                    
+                case 'ewallet':
+                    const ewalletType = document.getElementById('ewalletType').value;
+                    const ewalletNumber = document.getElementById('ewalletNumber').value.trim();
+                    
+                    if (!ewalletType || !ewalletNumber) {
+                        alert('Please select e-wallet type and enter your e-wallet number');
+                        return false;
+                    }
+                    break;
+                    
+                case 'bank':
+                case 'cod':
+                    // No additional validation needed for bank transfer or COD
+                    break;
+                    
+                default:
+                    alert('Please select a valid payment method');
+                    return false;
+            }
+            
+            return true;
+        }
+        
+        // Format card number with spaces
+        function formatCardNumber(input) {
+            let value = input.value.replace(/\s/g, '').replace(/[^0-9]/gi, '');
+            let formattedValue = value.match(/.{1,4}/g)?.join(' ') || value;
+            input.value = formattedValue;
+        }
+        
+        // Format expiry date
+        function formatExpiryDate(input) {
+            let value = input.value.replace(/\D/g, '');
+            if (value.length >= 2) {
+                value = value.substring(0, 2) + '/' + value.substring(2, 4);
+            }
+            input.value = value;
+        }
+
+        // Initialize page
+        document.addEventListener('DOMContentLoaded', function() {
+            displayOrderSummary();
+            checkUserRegistration();
+            checkLoginStatus();
+            
+            // Payment method selection
+            document.querySelectorAll('.payment-method').forEach(method => {
+                method.addEventListener('click', function() {
+                    document.querySelectorAll('.payment-method').forEach(m => m.classList.remove('selected'));
+                    this.classList.add('selected');
+                    
+                    // Show corresponding payment form
+                    showPaymentForm(this.dataset.method);
+                    
+                    // Debug: Log selected payment method
+                    console.log('Payment method selected:', this.dataset.method);
+                });
+            });
+            
+            // Initialize payment form
+            showPaymentForm('card');
+            
+            // Add input formatting
+            const cardNumberInput = document.getElementById('cardNumber');
+            if (cardNumberInput) {
+                cardNumberInput.addEventListener('input', function() {
+                    formatCardNumber(this);
+                });
+            }
+            
+            const expiryDateInput = document.getElementById('expiryDate');
+            if (expiryDateInput) {
+                expiryDateInput.addEventListener('input', function() {
+                    formatExpiryDate(this);
+                });
+            }
+        });
+    </script>
+
+    <script src="script.js?v=6.0"></script>
+    <script src="navigation-loader.js"></script>
+    <script src="footer-loader.js"></script>
+</body>
+</html>
